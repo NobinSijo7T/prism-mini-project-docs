@@ -1,0 +1,183 @@
+\chapter{Testing and CI/CD}
+
+% ============================================================
+\section{Overview of Testing Strategy}
+% ============================================================
+Prism AI Browser is tested at multiple levels corresponding to its layered architecture: the Chromium browser layer (C++), the AI agent backend (Python), the chat/homepage frontend (JavaScript), and the end-to-end integration of all components via CDP. The testing strategy combines manual exploratory testing during development with automated checks embedded in the build pipeline.
+
+% ============================================================
+\section{Unit Testing}
+% ============================================================
+
+\subsection{Browser Layer (C++)}
+Chromium's own GTest-based testing framework is used for unit testing the Prism-specific C++ components:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{PrismAIButton:} Tests verify that \texttt{OnButtonPressed()} constructs the correct \texttt{OpenURLParams} (URL \texttt{http://127.0.0.1:7788}, disposition \texttt{NEW\_FOREGROUND\_TAB}, transition \texttt{PAGE\_TRANSITION\_TYPED}).
+    \item \textbf{CDP Switch Injection:} A unit test confirms that launching the browser without \texttt{--remote-debugging-port} results in the switch being appended with value \texttt{9222}, and that an existing value is not overwritten.
+    \item \textbf{Toolbar Integration:} \texttt{ToolbarView} tests assert that the \texttt{prism\_ai\_button\_} child view is non-null after \texttt{Init()} and positioned in the correct order relative to the Home button.
+\end{itemize}
+
+\subsection{AI Agent Backend (Python)}
+Python's built-in \texttt{unittest} / \texttt{pytest} framework is used to test the AI agent server modules:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{LLMEngine:} Mock tests verify that prompts are correctly formatted and that the action plan parser produces a well-formed list of \texttt{Action} objects from LLM output.
+    \item \textbf{CDPInterface:} Stubbed WebSocket connections test that \texttt{navigate()}, \texttt{evaluate()}, and \texttt{click()} methods produce correctly structured CDP message payloads.
+    \item \textbf{BrowserController:} Tests verify that the action dispatcher routes each action type to the correct CDP method and handles errors (timeouts, invalid selectors) gracefully.
+\end{itemize}
+
+\subsection{Aura AI Chat Frontend (JavaScript)}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{TaskExecutor:} Each regex task pattern is tested in isolation against a battery of natural language command variants to confirm correct handler dispatch (e.g., ``open youtube and look for cocomelon'' maps to the YouTube search handler).
+    \item \textbf{Exponential Backoff Retry:} Unit tests mock the fetch API to return 503 responses and verify that the retry logic fires exactly 5 times with the expected delays (1 s, 2 s, 4 s, 8 s, 16 s) before surfacing an error.
+    \item \textbf{Conversation Storage:} Tests confirm that loading, saving, importing, and exporting conversation sessions from \texttt{localStorage} round-trips correctly.
+    \item \textbf{Image Generation:} Mocked OpenRouter API responses are tested to confirm Base64 images are rendered inline and the fallback URL path is triggered when Base64 data is absent.
+\end{itemize}
+
+% ============================================================
+\section{Integration Testing}
+% ============================================================
+
+\subsection{Browser-to-Agent Integration}
+\begin{itemize}[leftmargin=*]
+    \item The integration test suite starts both the compiled Prism browser and the Python AI agent server, then drives actions through the CDP WebSocket to confirm end-to-end command execution.
+    \item A test script submits the command ``Navigate to example.com'' and asserts that the active tab's URL changes to \texttt{https://example.com} within a 5-second timeout.
+    \item Tab creation, closure, and switching are similarly exercised end-to-end.
+\end{itemize}
+
+\subsection{CDP Availability Test}
+A lightweight Python script connects to \texttt{ws://127.0.0.1:9222/json} immediately after browser startup and asserts that a valid JSON list of targets is returned, confirming the CDP always-on feature works correctly.
+
+\subsection{Homepage DevSpace Integration}
+The homepage is tested in a locally served environment to confirm:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{quotes.json} is fetched without CORS errors at \texttt{http://localhost:8000}.
+    \item Clock updates in real time and persists the selected format across page reloads.
+    \item All Dev Space tool cards open their respective overlays or links correctly.
+    \item The Matrix background (\texttt{matrix.js}) renders without JavaScript errors across Chromium and Firefox.
+\end{itemize}
+
+% ============================================================
+\section{System and Acceptance Testing}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Manual Exploratory Testing:} Each release candidate is tested by team members across Windows and Linux for all major features: AI button, voice commands, image generation, task executor, and homepage.
+    \item \textbf{Cross-Platform Build Verify:} The fully patched build is verified to compile without errors on Ubuntu 22.04 (primary CI target) and Windows 11.
+    \item \textbf{Privacy Audit:} Network traffic is inspected with \texttt{mitmproxy} during AI feature usage to confirm that no user data or page content is sent to external servers. Only OpenRouter API calls (for image generation) and Gemini/HuggingFace calls (for chat) use the internet, and these are user-initiated with explicit API key configuration.
+    \item \textbf{Performance Benchmarking:} Browser startup time is compared against the unpatched Chromium base revision to confirm the CDP switch injection adds $<$50 ms overhead.
+\end{itemize}
+
+% ============================================================
+\section{CI/CD Pipeline for Prism Browser}
+% ============================================================
+
+\subsection{Pipeline Architecture}
+The Prism CI/CD pipeline is implemented as a GitHub Actions workflow that validates, builds, and optionally releases a Prism build on every push to the main branch. Figure~\ref{fig:cicd} shows the pipeline stages.
+
+\begin{figure}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    stage/.style={draw, rounded corners=5pt, minimum width=3.4cm,
+                  minimum height=1.0cm, align=center, fill=blue!10, font=\small},
+    dec/.style  ={draw, diamond, aspect=2.5, minimum width=2.8cm,
+                  minimum height=1.0cm, align=center, fill=yellow!20, font=\small},
+    fail/.style ={draw, rounded corners=5pt, minimum width=3.4cm,
+                  minimum height=1.0cm, align=center, fill=red!15, font=\small},
+    arr/.style  ={-Stealth, thick},
+    lbl/.style  ={font=\scriptsize, fill=white, inner sep=2pt}
+]
+
+% -------------------------------------------------------
+%  Row 1  (y = 0)  — left → right
+% -------------------------------------------------------
+\node[stage] (sync)  at (0,    0) {1.\ Chromium Sync\\{\scriptsize(\texttt{gclient sync})}};
+\node[stage] (base)  at (5.5,  0) {2.\ Base Revision\\Check};
+\node[dec]   (bchk)  at (10.5, 0) {Revision\\match?};
+\node[stage] (patch) at (15.5, 0) {3.\ Apply Patches\\{\scriptsize(\texttt{apply\_patches.sh})}};
+
+% -------------------------------------------------------
+%  Row 2  (y = -3.8)  — right → left
+% -------------------------------------------------------
+\node[stage] (build) at (15.5,-3.8) {4.\ GN Gen +\\Ninja Build};
+\node[dec]   (bres)  at (10.5,-3.8) {Build\\passes?};
+\node[stage] (test)  at (5.5, -3.8) {5.\ Run Unit +\\Integration Tests};
+\node[dec]   (tres)  at (1.5, -3.8) {Tests\\pass?};
+
+% -------------------------------------------------------
+%  Row 3  (y = -7.8)
+% -------------------------------------------------------
+\node[stage] (rel)   at (0,   -7.8) {6.\ Package\\Binary};
+\node[stage] (pub)   at (5.5, -7.8) {7.\ Publish Release\\Artefact};
+\node[fail]  (abrt)  at (10.5,-7.8) {Abort \& Notify\\(email / Slack)};
+
+% -------------------------------------------------------
+%  Arrows — Row 1
+% -------------------------------------------------------
+\draw[arr] (sync)  -- (base);
+\draw[arr] (base)  -- (bchk);
+\draw[arr] (bchk)  -- node[lbl, above]{Yes} (patch);
+
+% bchk No → re-sync (arc below row 1)
+\draw[arr] (bchk.south) -- ++(0,-0.7) -- ++(-12.0,0)
+           node[lbl, above, pos=0.5]{No --- re-sync}
+           |- (sync.south);
+
+% -------------------------------------------------------
+%  Arrows — Row 1 → Row 2
+% -------------------------------------------------------
+\draw[arr] (patch.south) -- (build.north);
+
+% -------------------------------------------------------
+%  Arrows — Row 2
+% -------------------------------------------------------
+\draw[arr] (build) -- (bres);
+\draw[arr] (bres)  -- node[lbl, above]{Yes} (test);
+\draw[arr] (test)  -- (tres);
+
+% bres No → abort (straight down, same x)
+\draw[arr] (bres.south) -- ++(0,-0.7) -|
+           node[lbl, above, pos=0.2]{No} (abrt.north);
+
+% tres No → abort
+\draw[arr] (tres.south) -- ++(0,-1.5) -|
+           node[lbl, above, pos=0.15]{No} (abrt.south west);
+
+% -------------------------------------------------------
+%  Arrows — Row 2 → Row 3
+% -------------------------------------------------------
+\draw[arr] (tres.west) -- ++(-0.5,0) |-
+           node[lbl, right, pos=0.4]{Yes} (rel.north);
+
+% -------------------------------------------------------
+%  Arrows — Row 3
+% -------------------------------------------------------
+\draw[arr] (rel) -- (pub);
+
+\end{tikzpicture}}
+\caption{CI/CD Pipeline -- Prism AI Browser}
+\label{fig:cicd}
+\end{figure}
+
+\subsection{Stage Details}
+
+\begin{longtable}{|p{1.5cm}|p{3.5cm}|p{9cm}|}
+\hline
+\textbf{Stage} & \textbf{Tool / Script} & \textbf{Description} \\ \hline
+\endhead
+1 & \texttt{gclient sync} / \texttt{fetch chromium} & Syncs the Chromium source tree to the SHA recorded in \texttt{BASE\_REVISION.txt}. Skippable with \texttt{--skip-sync} flag for speed. \\ \hline
+2 & \texttt{apply\_patches.sh} (revision check) & Reads \texttt{BASE\_REVISION.txt} and compares it with \texttt{git rev-parse HEAD} in the Chromium checkout. Fails fast if there is a mismatch. Bypassable with \texttt{--skip-base-check}. \\ \hline
+3 & \texttt{apply\_patches.sh} & Applies \texttt{*.patch} files first, then \texttt{*.diff} files, in alphabetical order from the \texttt{patches/} directory. Supports a custom patch directory via \texttt{--patch-dir}. Dry-run mode via \texttt{--check}. \\ \hline
+4 & \texttt{build\_prism.sh} $\rightarrow$ \texttt{gn gen} + \texttt{ninja} & Generates the build system with \texttt{gn gen out/Default} and builds the \texttt{chrome} target via \texttt{ninja -C out/Default chrome}. Supports extra GN args via \texttt{--gn-args}. \\ \hline
+5 & GTest / pytest & Runs compiled C++ unit tests (\texttt{browser\_tests}, \texttt{unit\_tests}) and Python agent tests. Reports test results to CI. \\ \hline
+6 & Custom packaging & Bundles the Prism binary, homepage (\texttt{homepage-devspace/}), and Aura AI chat (\texttt{ai-chat/}) into a distributable archive (\texttt{.tar.gz} on Linux, \texttt{.zip} on Windows). \\ \hline
+7 & GitHub Releases API & Uploads the archive as a GitHub Release asset tagged with the Chromium base revision and a Prism version string. \\ \hline
+\end{longtable}
+
+\subsection{Key CI/CD Properties}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Reproducibility:} Every build is anchored to a specific Chromium revision via \texttt{BASE\_REVISION.txt}, ensuring builds are deterministic and patches apply cleanly.
+    \item \textbf{Incremental Builds:} The Ninja build system caches compilation results; only files modified by patches or upstream changes are recompiled, significantly reducing build time on iterative runs.
+    \item \textbf{Patch Drift Detection:} If upstream Chromium changes a patched file, the \texttt{git apply} step will fail with a conflict report, immediately alerting contributors to regenerate affected patches.
+    \item \textbf{Separation of Concerns:} Feature patches are kept in separate, numbered files (\texttt{0001-*}, \texttt{0002-*}, \ldots), enabling individual features to be reviewed, reverted, or cherry-picked independently.
+    \item \textbf{Minimal Repository Size:} The public Prism repository stores only patch files, scripts, and documentation -- no Chromium source code -- keeping repository size under 1 MB.
+\end{itemize}

@@ -1,0 +1,122 @@
+\chapter{Requirements Specification}
+
+\section{External Interface Requirements}
+
+\subsection{User Interfaces}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Prism AI Toolbar Button:} A prism-shaped triangle icon button is embedded in the Chromium toolbar between the Home button and the tab strip. Clicking it opens the AI agent web interface at \texttt{http://127.0.0.1:7788} in a new foreground tab.
+    \item \textbf{AI Agent Web UI:} A local web-based chat interface served by the Python backend. Users type natural language commands or activate voice input. The interface displays AI responses, progress indicators for multi-step tasks, and results.
+    \item \textbf{Voice Input:} A microphone button within the AI agent interface activates Speech-to-Text (STT) capture. Recognised text is pre-filled into the command input field.
+    \item \textbf{Browser Standard UI:} All standard Chromium browser UI elements (address bar, back/forward/reload navigation, bookmarks, extensions toolbar) remain intact.
+\end{itemize}
+
+\subsection{Hardware Interfaces}
+\begin{itemize}[leftmargin=*]
+    \item Microphone: For voice command input via the STT subsystem.
+    \item Display: Standard monitor supporting at minimum 1024$\times$768 resolution.
+    \item Network Interface: Required for standard web browsing; AI agent operates on the loopback interface only.
+\end{itemize}
+
+\subsection{Software Interfaces}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Chrome DevTools Protocol (CDP):} The AI agent connects to the Chromium browser via WebSocket on port 9222. CDP provides APIs for target management (\texttt{Target.*}), page navigation (\texttt{Page.*}), DOM manipulation (\texttt{DOM.*}), input simulation (\texttt{Input.*}), and JavaScript execution (\texttt{Runtime.*}).
+    \item \textbf{LLM Inference API:} The AI agent backend communicates with a local LLM (e.g., via Ollama or llama.cpp HTTP API) for language understanding and response generation.
+    \item \textbf{Web Speech API / STT Engine:} Used for voice-to-text transcription, either via the browser's built-in Web Speech API or a locally hosted STT service.
+\end{itemize}
+
+\subsection{Communication Interfaces}
+\begin{itemize}[leftmargin=*]
+    \item HTTP on \texttt{127.0.0.1:7788}: Browser-to-agent communication for submitting commands.
+    \item WebSocket on \texttt{127.0.0.1:9222}: Agent-to-browser CDP communication for automation.
+    \item All external internet communication is solely for normal web browsing and uses standard HTTP/HTTPS.
+\end{itemize}
+
+\section{Functional Requirements}
+
+\subsection{FR-01: AI Button Integration}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-01 \\ \hline
+\textbf{Title} & AI Toolbar Button \\ \hline
+\textbf{Description} & The browser shall display a Prism AI toolbar button (prism triangle icon) in the main toolbar. \\ \hline
+\textbf{Input} & User clicks the Prism AI button. \\ \hline
+\textbf{Output} & A new foreground tab opens navigating to \texttt{http://127.0.0.1:7788}. \\ \hline
+\textbf{Priority} & High \\ \hline
+\end{longtable}
+
+\subsection{FR-02: CDP Always-On}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-02 \\ \hline
+\textbf{Title} & Guaranteed CDP Availability \\ \hline
+\textbf{Description} & The CDP remote debugging server shall always start on port 9222 at browser launch, even if no explicit command-line flag is provided. \\ \hline
+\textbf{Input} & Browser process startup. \\ \hline
+\textbf{Output} & CDP WebSocket endpoint active at \texttt{ws://127.0.0.1:9222}. \\ \hline
+\textbf{Priority} & High \\ \hline
+\end{longtable}
+
+\subsection{FR-03: Natural Language Command Processing}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-03 \\ \hline
+\textbf{Title} & NLP Command Execution \\ \hline
+\textbf{Description} & The AI agent shall accept a natural language command as text input, interpret it using an LLM, decompose it into sub-tasks, and execute each sub-task via CDP. \\ \hline
+\textbf{Input} & Natural language command string (e.g., ``Open Wikipedia and search for quantum computing''). \\ \hline
+\textbf{Output} & Browser performs the requested action(s); agent returns a status message. \\ \hline
+\textbf{Priority} & High \\ \hline
+\end{longtable}
+
+\subsection{FR-04: Voice Command Input}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-04 \\ \hline
+\textbf{Title} & Voice-to-Text Input \\ \hline
+\textbf{Description} & The AI agent UI shall provide a voice input button; speech is transcribed to text and submitted as a command. \\ \hline
+\textbf{Input} & User activates voice input and speaks a command. \\ \hline
+\textbf{Output} & Transcribed text is populated in the command field and submitted to the agent. \\ \hline
+\textbf{Priority} & Medium \\ \hline
+\end{longtable}
+
+\subsection{FR-05: Tab Management}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-05 \\ \hline
+\textbf{Title} & AI-Driven Tab Management \\ \hline
+\textbf{Description} & The AI agent shall be able to open, close, switch, and navigate browser tabs in response to user commands. \\ \hline
+\textbf{Input} & Natural language command related to tab management. \\ \hline
+\textbf{Output} & Browser tabs are created, destroyed, or switched as instructed. \\ \hline
+\textbf{Priority} & High \\ \hline
+\end{longtable}
+
+\subsection{FR-06: Page Content Extraction and Summarisation}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-06 \\ \hline
+\textbf{Title} & Content Understanding \\ \hline
+\textbf{Description} & The AI agent shall extract visible text from the active tab and pass it to the LLM to produce summaries, answer questions, or extract structured data. \\ \hline
+\textbf{Input} & User command such as ``Summarise this page'' or ``What is the price of this product?'' \\ \hline
+\textbf{Output} & AI-generated summary or answer displayed in the chat UI. \\ \hline
+\textbf{Priority} & Medium \\ \hline
+\end{longtable}
+
+\subsection{FR-07: Form Auto-Fill}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-07 \\ \hline
+\textbf{Title} & Intelligent Form Automation \\ \hline
+\textbf{Description} & The AI agent shall identify form fields in the current page's DOM and fill them with data provided by or inferred from the user's command. \\ \hline
+\textbf{Input} & Command such as ``Fill in my name and email in this form'' with associated data. \\ \hline
+\textbf{Output} & Form fields populated with correct data via CDP input simulation. \\ \hline
+\textbf{Priority} & Medium \\ \hline
+\end{longtable}
+
+\subsection{FR-08: Privacy-First Local Processing}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Requirement ID} & FR-08 \\ \hline
+\textbf{Title} & Local-Only AI Processing \\ \hline
+\textbf{Description} & No user commands, page content, or browsing history shall be transmitted to any external server as part of the AI processing pipeline. \\ \hline
+\textbf{Input} & Any AI feature usage. \\ \hline
+\textbf{Output} & All LLM inference and STT processing occurs locally on the user's machine. \\ \hline
+\textbf{Priority} & High \\ \hline
+\end{longtable}

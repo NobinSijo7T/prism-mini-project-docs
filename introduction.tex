@@ -1,0 +1,58 @@
+\chapter{Introduction}
+
+\section{Purpose}
+This document presents the final project report for \textit{Prism AI Browser}, an intelligent, agentic, and privacy-centric web browser developed as part of the B.Tech final year project at the Department of Computer Science and Engineering, College of Engineering Karunagappally. The report describes the problem domain, the design and architecture of the system, its features, non-functional requirements, and UML-based system models.
+
+\section{Project Overview}
+Modern web browsers function primarily as passive navigation tools, offering limited intelligent assistance to users during browsing sessions. With growing demand for productivity-enhancing and privacy-respecting software, there is a clear need for a browser capable of actively understanding user intent and automating complex web interactions without relying on cloud-based AI services.
+
+Prism AI Browser addresses this gap by integrating large language model (LLM) based agentic AI directly into a Chromium-based browser environment. Users can interact with the browser using natural language commands and voice input to perform tasks such as navigating websites, managing tabs, summarising content, filling forms, and executing multi-step automation sequences entirely on-device.
+
+\section{Scope}
+The scope of the Prism AI Browser project encompasses:
+\begin{itemize}[leftmargin=*]
+    \item Modification and customisation of the open-source Chromium browser source code.
+    \item Development of a custom \texttt{PrismAIButton} toolbar component that connects the browser UI to the local AI agent backend.
+    \item Integration of the Chrome DevTools Protocol (CDP) to allow the AI agent to programmatically control browser tabs, the DOM, and navigation.
+    \item A locally running AI agent server (Python-based) that interprets natural language instructions and translates them into browser actions via CDP.
+    \item Voice-to-text input for hands-free browser interaction.
+    \item Privacy-first design: all AI processing is performed locally with no user data transmitted to external servers.
+\end{itemize}
+
+\section{Definitions, Acronyms, and Abbreviations}
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Term} & \textbf{Definition} \\ \hline
+\endhead
+AI & Artificial Intelligence \\ \hline
+LLM & Large Language Model \\ \hline
+CDP & Chrome DevTools Protocol -- a remote debugging and automation protocol exposed by Chromium on port 9222 \\ \hline
+Agentic AI & An AI system capable of autonomously planning and executing multi-step tasks \\ \hline
+NLP & Natural Language Processing \\ \hline
+STT & Speech-to-Text \\ \hline
+DOM & Document Object Model -- the in-memory tree representation of a web page \\ \hline
+GN & Generate Ninja -- the meta-build system used by Chromium \\ \hline
+Ninja & A fast build system used alongside GN for Chromium compilation \\ \hline
+API & Application Programming Interface \\ \hline
+UI & User Interface \\ \hline
+CSE & Computer Science and Engineering \\ \hline
+\end{longtable}
+
+\section{References}
+\begin{itemize}[leftmargin=*]
+    \item Chromium source code -- \url{https://chromium.googlesource.com/chromium/src}
+    \item Chrome DevTools Protocol -- \url{https://chromedevtools.github.io/devtools-protocol/}
+    \item OpenAI GPT-3 API documentation -- \url{https://beta.openai.com/docs/}
+    \item Local LLM frameworks (e.g., LLaMA, Alpaca) -- \url{https://github.com/ggerganov/llama.cpp}
+    \item Web Speech API documentation -- \url{https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API}
+\end{itemize}
+
+\section{Overview of the Report}
+The remainder of this report is organised as follows:
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Chapter 2 -- Overall Description:} Describes the product perspective, functions, user classes, assumptions, and dependencies.
+    \item \textbf{Chapter 3 -- Requirements Specification:} Details the functional and interface requirements of the system.
+    \item \textbf{Chapter 4 -- System Features:} Provides an in-depth description of each system feature.
+    \item \textbf{Chapter 5 -- Other Non-Functional Requirements:} Documents performance, security, usability, and other quality attributes.
+    \item \textbf{Chapter 6 -- UML Diagrams:} Presents Use Case, Class, Sequence, State Chart, and Flowchart diagrams.
+\end{itemize}

@@ -1,0 +1,476 @@
+\chapter{UML Diagrams}
+
+% ============================================================
+%  Section 6.1 – Use Case Diagram
+% ============================================================
+\section{Use Case Diagram}
+The Use Case Diagram in Figure~\ref{fig:usecase} identifies all actors and the principal use cases of the Prism AI Browser system.
+
+\begin{figure}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    actor/.style={draw, rectangle, rounded corners=4pt,
+                  minimum width=2.4cm, minimum height=0.9cm,
+                  align=center, fill=green!12, font=\small\bfseries},
+    usecase/.style={draw, ellipse,
+                    minimum width=4.4cm, minimum height=0.95cm,
+                    align=center, fill=blue!8, font=\small},
+    sys/.style={draw, rectangle, dashed, rounded corners=8pt,
+                inner sep=16pt, fill=gray!3},
+    arr/.style={-Stealth, thick},
+    inc/.style={-Stealth, dashed, thick, font=\scriptsize}
+]
+
+% ---- System boundary ----
+% Left column spans y= -0.8 to -13.3  →  centre y=-7.05, height~16.5cm
+\node[sys, minimum width=14.5cm, minimum height=16.5cm]
+      (sys) at (7.8, -7.05) {};
+\node[font=\small\bfseries] at (7.8, 0.7) {Prism AI Browser System};
+
+% ---- Actors (left side) ----
+% User centred on upper 4 use cases, LLM centred on lower 2
+\node[actor] (user) at (-2.5, -5.0)  {User};
+\node[actor] (llm)  at (-2.5,-11.0)  {Local LLM};
+
+% ---- CDP actor (right side) ----
+\node[actor] (cdp) at (18.5, -7.05) {CDP\\Interface};
+
+% ---- Left column use cases  (2.5 cm gap each) ----
+\node[usecase] (uc1) at (5.5,  -0.8) {Open AI Panel};
+\node[usecase] (uc2) at (5.5,  -3.3) {Enter Text Command};
+\node[usecase] (uc3) at (5.5,  -5.8) {Use Voice Command};
+\node[usecase] (uc4) at (5.5,  -8.3) {Navigate / Manage Tabs};
+\node[usecase] (uc5) at (5.5, -10.8) {Summarise Page Content};
+\node[usecase] (uc6) at (5.5, -13.3) {Manage Browser Settings};
+
+% ---- Right column use cases ----
+\node[usecase] (uc7) at (11.5,  -4.5) {Auto-Fill Web Form};
+\node[usecase] (uc8) at (11.5,  -9.5) {Execute CDP Actions};
+
+% ---- User associations ----
+\draw[arr] (user) -- (uc1);
+\draw[arr] (user) -- (uc2);
+\draw[arr] (user) -- (uc3);
+\draw[arr] (user) -- (uc4);
+\draw[arr] (user) -- (uc5);
+\draw[arr] (user) -- (uc6);
+\draw[arr] (user) to[out=20,in=180] (uc7);
+
+% ---- LLM associations ----
+\draw[arr] (llm) -- (uc5);
+\draw[arr] (llm) to[out=15,in=180] (uc2);
+
+% ---- CDP associations ----
+\draw[arr] (cdp) -- (uc8);
+\draw[arr] (cdp) to[out=180,in=0] (uc4);
+
+% ---- Include relationships ----
+% uc2 →<<include>>→ uc8  (curved arc staying above uc3/uc4)
+\draw[inc] (uc2.east) to[out=0,in=100]
+    node[right, pos=0.45, font=\scriptsize]{\texttt{<<include>>}} (uc8.north);
+% uc3 →<<include>>→ uc2  (short upward arc on right side)
+\draw[inc] (uc3.north) to[out=80,in=280]
+    node[right, pos=0.5, font=\scriptsize]{\texttt{<<include>>}} (uc2.south);
+
+\end{tikzpicture}}
+\caption{Use Case Diagram -- Prism AI Browser}
+\label{fig:usecase}
+\end{figure}
+
+\newpage
+% ============================================================
+%  Section 6.2 – Class Diagram
+% ============================================================
+\section{Class Diagram}
+Figure~\ref{fig:classdiag} shows the principal classes and their relationships in the Prism AI Browser system.
+
+\begin{figure}[H]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+    cls/.style={draw, rectangle, minimum width=5.2cm, font=\scriptsize},
+    hdr/.style={draw, rectangle, fill=blue!15, minimum width=5.2cm,
+                minimum height=0.65cm, align=center, font=\small\bfseries},
+    rel/.style={-Stealth, thick},
+    dep/.style={-Stealth, dashed, thick},
+    comp/.style={Diamond-Stealth, thick},
+    lbl/.style={font=\scriptsize, fill=white, inner sep=2pt}
+]
+
+% ==========================================================
+%  Row 1  (y = 0)   :  PrismAIButton (left)  |  ToolbarView (right)
+% ==========================================================
+
+% ---- PrismAIButton ----
+\node[hdr]   (bHdr)  at (0, 0)   {PrismAIButton};
+\node[cls, anchor=north] (bAttr) at (bHdr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{- browser\_: Browser*}\\
+        \texttt{- icon\_: VectorIcon}\vspace{3pt}}};
+\node[cls, anchor=north] (bMeth) at (bAttr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{+ PrismAIButton(browser)}\\
+        \texttt{+ OnButtonPressed(event)}\\
+        \texttt{+ \textasciitilde PrismAIButton()}\vspace{3pt}}};
+
+% ---- ToolbarView ----
+\node[hdr]   (tvHdr)  at (9.5, 0)  {ToolbarView};
+\node[cls, anchor=north] (tvAttr) at (tvHdr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{- prism\_ai\_button\_: PrismAIButton*}\\
+        \texttt{- home\_: HomeButton*}\\
+        \texttt{- reload\_: ReloadButton*}\vspace{3pt}}};
+\node[cls, anchor=north] (tvMeth) at (tvAttr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{+ Init()}\\
+        \texttt{+ Layout()}\vspace{3pt}}};
+
+% ==========================================================
+%  Row 2  (y = -7.0) :  AIAgentServer (left)  |  LLMEngine (right)
+% ==========================================================
+
+% ---- AIAgentServer ----
+\node[hdr]   (asHdr)  at (0, -7.0) {AIAgentServer};
+\node[cls, anchor=north] (asAttr) at (asHdr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{- host: str = "127.0.0.1"}\\
+        \texttt{- port: int = 7788}\\
+        \texttt{- llm: LLMEngine}\vspace{3pt}}};
+\node[cls, anchor=north] (asMeth) at (asAttr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{+ handle\_command(cmd)}\\
+        \texttt{+ stream\_response(cmd)}\\
+        \texttt{+ start()}\vspace{3pt}}};
+
+% ---- LLMEngine ----
+\node[hdr]   (llmHdr)  at (9.5, -7.0) {LLMEngine};
+\node[cls, anchor=north] (llmAttr) at (llmHdr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{- model\_name: str}\\
+        \texttt{- api\_url: str}\vspace{3pt}}};
+\node[cls, anchor=north] (llmMeth) at (llmAttr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{+ generate(prompt): str}\\
+        \texttt{+ plan(command): List[Action]}\vspace{3pt}}};
+
+% ==========================================================
+%  Row 3  (y = -14.0) :  CDPInterface (left)  |  BrowserController (right)
+% ==========================================================
+
+% ---- CDPInterface ----
+\node[hdr]   (cdpHdr)  at (0, -14.0) {CDPInterface};
+\node[cls, anchor=north] (cdpAttr) at (cdpHdr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{- ws\_url: str = "ws://127.0.0.1:9222"}\\
+        \texttt{- session\_id: str}\vspace{3pt}}};
+\node[cls, anchor=north] (cdpMeth) at (cdpAttr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{+ navigate(url)}\\
+        \texttt{+ evaluate(js\_expr): any}\\
+        \texttt{+ click(selector)}\\
+        \texttt{+ new\_tab(url): Tab}\vspace{3pt}}};
+
+% ---- BrowserController ----
+\node[hdr]   (bcHdr)  at (9.5, -14.0) {BrowserController};
+\node[cls, anchor=north] (bcAttr) at (bcHdr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{- cdp: CDPInterface}\\
+        \texttt{- active\_tab: str}\vspace{3pt}}};
+\node[cls, anchor=north] (bcMeth) at (bcAttr.south)
+    {\parbox{5.0cm}{\vspace{3pt}
+        \texttt{+ execute(action: Action)}\\
+        \texttt{+ close\_tab(tab\_id)}\\
+        \texttt{+ get\_page\_text(): str}\vspace{3pt}}};
+
+% ==========================================================
+%  Relationships
+% ==========================================================
+
+% ToolbarView composes PrismAIButton  (horizontal, row 1)
+\draw[comp] (tvAttr.west) -- node[lbl, above]{1 \quad 1} (bAttr.east);
+
+% AIAgentServer uses LLMEngine  (horizontal, row 2)
+\draw[rel] (asAttr.east) -- node[lbl, above]{uses} (llmAttr.west);
+
+% BrowserController composes CDPInterface  (horizontal, row 3)
+\draw[comp] (bcAttr.west) -- node[lbl, above]{1 \quad 1} (cdpAttr.east);
+
+% PrismAIButton triggers AIAgentServer  (vertical, left column)
+\draw[dep] (bMeth.south) -- ++(0,-0.5)
+    node[lbl, right, pos=0.5]{}
+    -- ($(asHdr.north) + (0,0.5)$) -- (asHdr.north)
+    node[lbl, right, near start]{opens port 7788};
+
+% AIAgentServer uses BrowserController  (diagonal, row2-left to row3-right)
+\draw[rel] (asMeth.south) -- ++(0,-0.6)
+           -- ++(5.2, 0)
+           -- ($(bcHdr.north) + (0, 0.6)$) -- (bcHdr.north)
+    node[lbl, above, pos=0.3]{uses};
+
+\end{tikzpicture}}
+\caption{Class Diagram -- Prism AI Browser}
+\label{fig:classdiag}
+\end{figure}
+
+\newpage
+% ============================================================
+%  Section 6.3 – Sequence Diagram
+% ============================================================
+\section{Sequence Diagram}
+Figure~\ref{fig:seqdiag} illustrates the message flow for a typical natural language command: \textit{``Open Wikipedia and search for quantum computing''}.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    lbl/.style={font=\scriptsize},
+    arr/.style={-Stealth, thick},
+    darr/.style={-Stealth, dashed, thick},
+    life/.style={dashed, thick, gray}
+]
+
+% --- Participants (lifeline headers) ---
+\node[draw, fill=green!15, rounded corners=3pt, minimum width=2.2cm,
+      minimum height=0.6cm, align=center, font=\small\bfseries] at (0cm,0)    {User};
+\node[draw, fill=blue!10, rounded corners=3pt, minimum width=2.2cm,
+      minimum height=0.6cm, align=center, font=\small\bfseries] at (2.5cm,0)  {AI Button};
+\node[draw, fill=orange!15, rounded corners=3pt, minimum width=2.2cm,
+      minimum height=0.6cm, align=center, font=\small\bfseries] at (5cm,0)    {Agent Server};
+\node[draw, fill=yellow!15, rounded corners=3pt, minimum width=2.2cm,
+      minimum height=0.6cm, align=center, font=\small\bfseries] at (7.5cm,0)  {LLM};
+\node[draw, fill=red!10, rounded corners=3pt, minimum width=2.2cm,
+      minimum height=0.6cm, align=center, font=\small\bfseries] at (10cm,0)   {CDP};
+\node[draw, fill=purple!10, rounded corners=3pt, minimum width=2.2cm,
+      minimum height=0.6cm, align=center, font=\small\bfseries] at (12.5cm,0) {Browser};
+
+% Arrow positions (x in cm)
+\def\U{0}
+\def\AB{2.5}
+\def\AS{5}
+\def\LM{7.5}
+\def\CP{10}
+\def\BR{12.5}
+
+% Lifelines
+\foreach \x in {\U,\AB,\AS,\LM,\CP,\BR}{
+    \draw[life] (\x cm, -0.35) -- (\x cm, -13.5);
+}
+
+% Message helpers: \msg{from}{to}{y}{label}
+\newcommand{\msg}[4]{%
+    \draw[arr] (#1 cm, #3) -- (#2 cm, #3)
+        node[midway, above, lbl]{#4};
+}
+\newcommand{\ret}[4]{%
+    \draw[darr] (#1 cm, #3) -- (#2 cm, #3)
+        node[midway, above, lbl]{#4};
+}
+\newcommand{\note}[2]{%
+    \node[lbl, anchor=east] at (-0.1cm, #1) {#2};
+}
+
+% --- Messages ---
+\note{-0.8}{1.}  \msg{\U}{\AB}{-0.8}{Click Prism AI Button}
+\note{-1.5}{2.}  \msg{\AB}{\BR}{-1.5}{OpenURL(127.0.0.1:7788)}
+\note{-2.2}{3.}  \ret{\BR}{\AB}{-2.2}{New tab with Agent UI}
+
+\note{-3.1}{4.}  \msg{\U}{\AS}{-3.1}{Submit command (text/voice)}
+\note{-3.8}{5.}  \msg{\AS}{\LM}{-3.8}{generate\_plan(command)}
+\note{-4.5}{6.}  \ret{\LM}{\AS}{-4.5}{action plan: [navigate, search]}
+
+\note{-5.4}{7.}  \msg{\AS}{\CP}{-5.4}{Target.createTarget}
+\note{-6.1}{8.}  \ret{\CP}{\AS}{-6.1}{targetId}
+
+\note{-6.9}{9.}  \msg{\AS}{\CP}{-6.9}{Page.navigate(wikipedia.org)}
+\note{-7.6}{10.} \ret{\CP}{\AS}{-7.6}{navigated OK}
+
+\note{-8.5}{11.} \msg{\AS}{\CP}{-8.5}{DOM.querySelector(\#searchInput)}
+\note{-9.2}{12.} \ret{\CP}{\AS}{-9.2}{nodeId}
+
+\note{-10.0}{13.}\msg{\AS}{\CP}{-10.0}{Input.dispatchKeyEvent(\ldots)}
+\note{-10.7}{14.}\ret{\CP}{\AS}{-10.7}{done}
+
+\note{-11.5}{15.}\msg{\AS}{\CP}{-11.5}{Page.navigate(submit)}
+\note{-12.2}{16.}\ret{\CP}{\AS}{-12.2}{page loaded}
+\note{-13.0}{17.}\ret{\AS}{\U}{-13.0}{Task completed: Wikipedia search done}
+
+\end{tikzpicture}
+\caption{Sequence Diagram -- Natural Language Command Execution}
+\label{fig:seqdiag}
+\end{figure}
+
+\newpage
+% ============================================================
+%  Section 6.4 – State Chart Diagram
+% ============================================================
+\section{State Chart Diagram}
+Figure~\ref{fig:statechart} shows the lifecycle of the AI Agent for a single user command, from idle to completion or error recovery.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    state/.style={draw, rounded rectangle, minimum width=3.5cm,
+                  minimum height=0.95cm, align=center,
+                  fill=blue!10, font=\small},
+    init/.style={draw, circle, fill=black, minimum size=9pt, inner sep=0},
+    final/.style={draw, circle, fill=black, minimum size=9pt, inner sep=0,
+                  double, double distance=2.5pt},
+    trans/.style={-Stealth, thick},
+    lbl/.style={font=\scriptsize, midway, fill=white, inner sep=2pt}
+]
+
+% ---- States ----
+\node[init]  (S)    at (0,   0)     {};
+\node[state] (IDLE) at (0,  -2.5)  {Idle};
+\node[state] (RECV) at (0,  -5.2)  {Receiving Input};
+\node[state] (STT)  at (-7.0,-8.2) {STT Processing\\(voice $\rightarrow$ text)};
+\node[state] (PLAN) at (0,  -8.2)  {LLM Planning};
+\node[state] (ERR)  at (7.0, -8.2) {Error State};
+\node[state] (EXEC) at (0,  -11.5) {Executing Actions\\via CDP};
+\node[state] (WAIT) at (7.0,-11.5) {Waiting for\\Page Load};
+\node[state] (DONE) at (0,  -15.0) {Completed};
+\node[final] (F)    at (0,  -17.0) {};
+
+% ---- Transitions ----
+
+% Start → Idle
+\draw[trans] (S) -- (IDLE);
+
+% Idle → Receiving Input
+\draw[trans] (IDLE) -- node[lbl, right]{user submits command} (RECV);
+
+% Receiving Input → LLM Planning  (text path, right side)
+\draw[trans] (RECV.south) -- node[lbl, right]{text command} (PLAN.north);
+
+% Receiving Input → STT Processing  (voice path, left side)
+\draw[trans] (RECV.west) -- ++(-1.0, 0) |-
+    node[lbl, left, near end]{voice detected} (STT.north);
+
+% STT → LLM Planning
+\draw[trans] (STT.east) -- node[lbl, above]{transcription ready} (PLAN.west);
+
+% LLM Planning → Executing Actions
+\draw[trans] (PLAN.south) -- node[lbl, right]{plan generated} (EXEC.north);
+
+% LLM Planning → Error State
+\draw[trans] (PLAN.east) -- node[lbl, above]{LLM error / timeout} (ERR.west);
+
+% Executing Actions ↔ Waiting for Page Load  (curved opposing arrows)
+\draw[trans] (EXEC.east) to[bend left=20]
+    node[lbl, above]{await navigation} (WAIT.west);
+\draw[trans] (WAIT.west) to[bend left=20]
+    node[lbl, below]{page loaded} (EXEC.east);
+
+% Executing Actions → Completed
+\draw[trans] (EXEC.south) -- node[lbl, right]{all actions done} (DONE.north);
+
+% Executing Actions → Error State  (route: up from EXEC, right to ERR)
+\draw[trans] (EXEC.north east) -- ++(0, 0.9) -- ++(5.5, 0) --
+    node[lbl, right]{CDP error} (ERR.south);
+
+% Error State → Receiving Input  (retry, route: up from ERR, left bend to RECV)
+\draw[trans] (ERR.north) -- ++(0, 1.2) -|
+    node[lbl, above, near start]{user retries} (RECV.east);
+
+% Error State → Idle  (abort, route: down-left-up outside all nodes)
+\draw[trans] (ERR.south) -- ++(0, -1.0) -- (-2.5, -9.9)
+    -- node[lbl, left]{abort} (-2.5, -2.5) -- (IDLE.west);
+
+% Completed → Final
+\draw[trans] (DONE) -- (F);
+
+% Completed → Idle  (new command loop, route: left side, clear of STT box)
+\draw[trans] (DONE.west) -- ++(-2.3, 0) |-
+    node[lbl, right, near end]{new command} (IDLE.west);
+
+\end{tikzpicture}
+\caption{State Chart Diagram -- AI Agent Command Lifecycle}
+\label{fig:statechart}
+\end{figure}
+
+\newpage
+% ============================================================
+%  Section 6.5 – Flowchart Diagram
+% ============================================================
+\section{Flowchart Diagram}
+Figure~\ref{fig:flowchart} presents the end-to-end processing flow for a user command in Prism AI Browser (voice or text).
+
+\begin{figure}[H]
+\centering
+\scalebox{0.82}{%
+\begin{tikzpicture}[
+    term/.style={draw, rounded rectangle, minimum width=4.2cm,
+                 minimum height=0.85cm, align=center, fill=green!15, font=\small},
+    proc/.style={draw, rectangle, minimum width=4.2cm,
+                 minimum height=0.85cm, align=center, fill=blue!10, font=\small},
+    dec/.style={draw, diamond, aspect=2.4, minimum width=4.2cm,
+                minimum height=0.85cm, align=center, fill=yellow!20, font=\small},
+    io/.style={draw, trapezium, trapezium left angle=70, trapezium right angle=110,
+               minimum width=4.2cm, minimum height=0.85cm,
+               align=center, fill=orange!15, font=\small},
+    arr/.style={-Stealth, thick}
+]
+
+% ---- Nodes (top to bottom, centred at x = 0) ----
+% Inter-node gap: 1.8 cm  (was 2.2 cm)
+\node[term]  (start)   at (0,   0.0) {Start};
+\node[io]    (input)   at (0,  -1.8) {User Input\\(text or voice)};
+\node[dec]   (voice)   at (0,  -3.8) {Voice Input?};
+\node[proc]  (stt)     at (-5.5,-5.8){Run STT Module\\(audio $\rightarrow$ text)};
+\node[proc]  (clean)   at (0,  -5.8) {Sanitise \& Prepare\\Command String};
+\node[proc]  (llm)     at (0,  -7.8) {Send to Local LLM\\(generate action plan)};
+\node[dec]   (valid)   at (0,  -9.8) {Plan Valid?};
+\node[proc]  (retry)   at (5.5, -9.8) {Report Error\\to User};
+\node[proc]  (cdpconn) at (0, -11.8) {Connect to CDP\\(ws://127.0.0.1:9222)};
+\node[proc]  (exec)    at (0, -13.8) {Execute Next Action\\(navigate / click / eval)};
+\node[dec]   (more)    at (0, -15.8) {More Actions?};
+\node[proc]  (result)  at (0, -17.8) {Collect Result \&\\Compose Response};
+\node[io]    (output)  at (0, -19.8) {Display Response\\in Agent UI};
+\node[term]  (end)     at (0, -21.6) {End};
+
+% ---- Arrows ----
+\draw[arr] (start)   -- (input);
+\draw[arr] (input)   -- (voice);
+
+% Voice branch to STT: horizontal left then vertical down into STT top
+\draw[arr] (voice.west) --
+    node[above, font=\scriptsize]{Yes}
+    (stt |- voice.west) -- (stt.north);
+
+% STT rejoins at clean
+\draw[arr] (stt.east) |- (clean.west);
+
+% No-voice path straight to clean
+\draw[arr] (voice.south) -- node[right, font=\scriptsize]{No} (clean.north);
+
+\draw[arr] (clean)   -- (llm);
+\draw[arr] (llm)     -- (valid);
+
+% Invalid plan → retry (right)
+\draw[arr] (valid.east) -- node[above, font=\scriptsize]{No} (retry.west);
+
+% Retry loops back to input via far right
+\draw[arr] (retry.east) -- ++(0.6, 0) |-
+    node[right, near start, font=\scriptsize]{retry} (input.east);
+
+% Valid plan → connect CDP
+\draw[arr] (valid.south) -- node[right, font=\scriptsize]{Yes} (cdpconn.north);
+
+\draw[arr] (cdpconn) -- (exec);
+\draw[arr] (exec)    -- (more);
+
+% No more actions → collect result
+\draw[arr] (more.south) -- node[right, font=\scriptsize]{No} (result.north);
+
+% More actions → loop back to exec (right side)
+\draw[arr] (more.east) -- ++(1.8, 0)
+    node[above, font=\scriptsize, pos=0.4]{Yes}
+    |- (exec.east);
+
+\draw[arr] (result)  -- (output);
+\draw[arr] (output)  -- (end);
+
+\end{tikzpicture}}
+\caption{Flowchart -- User Command Processing in Prism AI Browser}
+\label{fig:flowchart}
+\end{figure}

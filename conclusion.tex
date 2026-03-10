@@ -1,0 +1,60 @@
+\chapter{Conclusion}
+
+% ============================================================
+\section{Summary of Work}
+% ============================================================
+This project set out to build \textbf{Prism AI Browser} -- an intelligent, agentic, and privacy-centric web browser -- by extending the open-source Chromium browser with tightly integrated AI capabilities. Over the course of the project, the team designed, implemented, tested, and documented a complete system comprising three interlocking components:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Prism Chromium Build} -- A patch-based customisation of the Chromium browser that renames the product to ``Prism'', adds a custom \texttt{PrismAIButton} in the main toolbar, and guarantees the Chrome DevTools Protocol (CDP) is always active on port 9222.
+    \item \textbf{Aura AI Chat} -- A full-featured conversational AI web application supporting multi-model chat (Gemini Pro, DeepSeek V3.2), AI image generation (FLUX.2 Klein via OpenRouter), natural language browser task execution, persistent conversation history, and a privacy-respecting local memory system.
+    \item \textbf{Prism Homepage DevSpace} -- A custom new-tab homepage for developer users, offering a live clock, motivational quotes, animated backgrounds, RAM monitoring, and a suite of embedded developer tools (Color Generator, Prompt Synthesizer, Speed Test, Notepad, Focus Mode).
+\end{enumerate}
+
+% ============================================================
+\section{Key Achievements}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Patch-first architecture:} All Prism-specific modifications to Chromium are captured as compact, reproducible Git patch files totalling under 1 MB, allowing any contributor to rebuild Prism from a standard Chromium checkout in a single command (\texttt{build\_prism.sh}).
+    \item \textbf{CDP-driven automation:} By guaranteeing CDP availability at browser startup, the AI agent can programmatically control every aspect of the browser -- navigation, DOM inspection, input simulation, JavaScript execution -- without requiring any browser extension or external driver.
+    \item \textbf{Agentic execution:} The \texttt{TaskExecutor} module demonstrates true agentic behaviour, understanding natural language commands and executing multi-step browser actions (open, search, interact) autonomously with user confirmation checkpoints for safety.
+    \item \textbf{Privacy by design:} All AI inference flows (chat, task execution) operate over the loopback interface only. No user data, page content, or browsing history is transmitted to external servers as part of the core AI pipeline. Cloud API calls (Gemini, DeepSeek, OpenRouter for images) are opt-in, configured by the user, and transport only the explicit query.
+    \item \textbf{Multi-model flexibility:} The chat interface supports seamless switching between AI models and includes exponential backoff retry logic with real-time user feedback, ensuring a robust experience even under API instability.
+    \item \textbf{Developer-first UX:} The DevSpace homepage and the embedded tooling (Prompt Synthesizer, Color Gen, Speed Test) demonstrate Prism's positioning not just as a browser but as a developer environment.
+\end{itemize}
+
+% ============================================================
+\section{Challenges Overcome}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Chromium build complexity:} The Chromium source tree is one of the largest open-source codebases in existence. Setting up \texttt{depot\_tools}, managing \texttt{gclient} dependencies, and understanding the GN build system required significant upfront effort.
+    \item \textbf{Patch maintenance:} Upstream Chromium evolves rapidly. Ensuring patches applied cleanly to a pinned revision and understanding how to regenerate patches after upstream changes was a key engineering challenge.
+    \item \textbf{CDP integration:} The Chrome DevTools Protocol has extensive documentation but subtle behaviours -- particularly around tab lifecycle, session management, and asynchronous event ordering -- that required careful handling in the Python agent.
+    \item \textbf{LLM reliability:} Cloud LLM APIs (particularly Hugging Face Inference) can be slow or return 503 errors under load. Implementing robust exponential backoff retry logic with live user feedback was an important quality-of-life improvement.
+    \item \textbf{CORS and local serving:} Serving the homepage and chat app locally required careful configuration to avoid CORS errors, leading to the adoption of a Python/Node.js local HTTP server as the standard serving mechanism.
+\end{itemize}
+
+% ============================================================
+\section{Learning Outcomes}
+% ============================================================
+The team gained practical experience in the following areas:
+
+\begin{itemize}[leftmargin=*]
+    \item Large-scale C++ software development and modification within a real-world production codebase (Chromium).
+    \item Cross-platform build systems (GN, Ninja) and patch-based software distribution workflows.
+    \item Browser internals: the Views UI toolkit, toolbar architecture, CDP protocol, and browser process lifecycle.
+    \item Asynchronous Python programming with WebSocket clients and HTTP servers.
+    \item Frontend development with Tailwind CSS, JavaScript ES6+, and Web APIs (Speech, Performance, localStorage).
+    \item API integration patterns: REST, WebSocket, exponential backoff retry, and API key management.
+    \item AI application development: prompt engineering, multi-model routing, image generation integration, and local memory systems.
+    \item Software documentation: UML diagrams (Use Case, Class, Sequence, State Chart, Flowchart), requirements engineering (SRS format), and academic technical writing.
+\end{itemize}
+
+% ============================================================
+\section{Conclusion}
+% ============================================================
+Prism AI Browser demonstrates that it is both feasible and practical to deeply integrate agentic AI capabilities into a modern web browser without sacrificing privacy. By combining a lean patch set atop Chromium, a CDP-driven Python AI agent, and a polished AI chat and developer homepage, the project delivers a coherent vision of what the next generation of intelligent browsers could look like.
+
+The foundation laid by this project -- the reproducible build system, the CDP automation backbone, the multi-model AI chat, and the developer-focused homepage -- provides a solid platform for the rich set of future enhancements described in Chapter~\ref{chap:future}. With planned improvements such as fully on-device LLM inference, multi-agent coordination, an extension plugin API, and broader platform support, Prism has the potential to grow from a research prototype into a genuinely useful product.
+
+The project successfully meets all its primary objectives: the browser is buildable, the AI features are functional and privacy-respecting, and the overall system architecture is maintainable and extensible. The team concludes that the integration of agentic AI into the browser layer represents a meaningful direction for future browser development, and Prism AI Browser is a concrete step toward that future.

@@ -1,0 +1,94 @@
+\chapter{Future Implementation}
+\label{chap:future}
+
+Prism AI Browser is a functional prototype demonstrating the feasibility of agentic, privacy-centric AI integration in a Chromium-based browser. Several enhancements and new features are identified for future development cycles.
+
+% ============================================================
+\section{Fully On-Device LLM via WebAssembly}
+% ============================================================
+Currently, the Aura AI Chat feature relies on external API calls to Gemini (Google) and DeepSeek (Hugging Face Inference API), which require internet connectivity and third-party API keys. A planned future enhancement is to replace or supplement these with a fully on-device LLM running via WebAssembly (WASM):
+
+\begin{itemize}[leftmargin=*]
+    \item Integrate \textbf{WebLLM} (web-llm.mlc.ai) or \textbf{Ollama} (local HTTP server) as a first-class LLM backend option alongside Gemini and DeepSeek.
+    \item Package quantised model weights (e.g., Llama 3, Phi-3 Mini, Gemma 2B in GGUF format) alongside the browser distribution.
+    \item Perform all inference in the browser process via the WebGPU-accelerated WebLLM runtime, eliminating any external API dependency for chat.
+    \item Provide a model manager UI in the settings page for downloading, switching, and managing local model files.
+\end{itemize}
+
+% ============================================================
+\section{Multi-Agent Coordination}
+% ============================================================
+The current AI agent is a single-agent system that handles one command at a time. Future work includes:
+
+\begin{itemize}[leftmargin=*]
+    \item A \textbf{planner agent} that decomposes complex, multi-part user goals into sub-tasks and delegates them to specialised sub-agents (e.g., a ``Web Research Agent'', a ``Form-Filling Agent'', a ``Summarisation Agent'').
+    \item \textbf{Parallel tab execution}: Multiple agents working simultaneously across different browser tabs to complete parts of a task in parallel.
+    \item An \textbf{agent memory bus} enabling agents to share intermediate results (e.g., data extracted from one page used as input for an action on another).
+    \item A \textbf{task queue UI} in the browser showing running, queued, and completed agent tasks with the ability to pause, cancel, or replay them.
+\end{itemize}
+
+% ============================================================
+\section{Enhanced Voice Interface}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item Replace the current Web Speech API (which may use cloud STT) with a fully local, on-device speech recognition engine such as \textbf{Whisper} (OpenAI Whisper via WASM) or \textbf{Vosk}.
+    \item Add wake-word detection (e.g., ``Hey Prism'') for hands-free activation without clicking the microphone button.
+    \item Implement \textbf{Text-to-Speech (TTS)} output so Prism can read AI responses aloud, enabling fully eyes-free interaction.
+    \item Support multi-language voice input beyond English.
+\end{itemize}
+
+% ============================================================
+\section{Prism Extension Store and Plugin API}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item Develop a lightweight \textbf{Prism Extension Store} hosting curated extensions optimised for AI-assisted browsing (AI summarisers, fact-checkers, automated form fillers).
+    \item Expose a \textbf{Prism AI Plugin API}: a JavaScript interface allowing browser extensions to register new tools for the AI agent, define their schemas, and receive agent-dispatched function calls (similar in concept to OpenAI function calling / tool use).
+    \item Enable third-party developers to build and distribute AI-powered browser extensions through the Prism plugin ecosystem.
+\end{itemize}
+
+% ============================================================
+\section{Advanced Image Generation Features}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item Add support for additional image generation models beyond FLUX.2 Klein, including \textbf{Stable Diffusion XL} (local, via WASM) and \textbf{Google Imagen} (API).
+    \item Implement \textbf{image editing} commands: ``Make the background blue'', ``Remove the person from this image''.
+    \item Provide an \textbf{in-page image generation overlay} accessible directly from any webpage via right-click context menu.
+    \item Add a \textbf{prompt history} panel in Aura AI Chat to quickly re-run and iterate on previous image generation prompts.
+\end{itemize}
+
+% ============================================================
+\section{Homepage DevSpace Enhancements}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Custom widget system}: Allow users to add/remove/reorder widgets on the homepage (RSS feeds, GitHub activity, weather, stock ticker, Pomodoro timer).
+    \item \textbf{Theme engine}: A visual theme builder with live preview for selecting font, colour palette, background, and animation style; themes exportable and shareable as JSON files.
+    \item \textbf{Deeper browser integration}: Link Dev Space tools (Color Gen, Prompt Synthesizer) directly to Aura AI Chat for AI-assisted colour palette generation and prompt refinement from within the homepage.
+    \item \textbf{Offline-first}: Service Worker caching so the homepage fully loads with no internet connection.
+\end{itemize}
+
+% ============================================================
+\section{Privacy and Security Hardening}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item \textbf{AI Content Policy Engine}: A locally-running lightweight classifier that flags potentially sensitive content before it is passed to any LLM (including local ones) and prompts the user for confirmation.
+    \item \textbf{CDP Access Control}: Restrict CDP access with an authentication token so that only the authorised Prism AI agent server can connect, preventing rogue local processes from exploiting the always-on CDP port.
+    \item \textbf{Encrypted local memory}: Encrypt the \texttt{localStorage}-based AI memory using the OS keychain, so memory data cannot be read by other applications.
+    \item \textbf{Fine-grained permission model}: Allow users to restrict which websites the AI agent is allowed to interact with (allowlist/blocklist per domain).
+\end{itemize}
+
+% ============================================================
+\section{Cross-Platform and Mobile Support}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item Extend the patch set and build scripts to fully support \textbf{macOS} (ARM and x86-64) and \textbf{Windows} as first-class build targets alongside Linux.
+    \item Explore a \textbf{Prism for Android} build based on Chromium's Android target, with a mobile-adapted Aura AI Chat that uses a smaller on-device model (Gemma 2B, Phi-3 Mini).
+    \item Provide pre-built binary distributions via GitHub Releases so that non-developer users can install Prism without needing to compile Chromium from source.
+\end{itemize}
+
+% ============================================================
+\section{Automated Patch Rebase Tooling}
+% ============================================================
+\begin{itemize}[leftmargin=*]
+    \item Build a \textbf{rebase assistant} GitHub Action that, when upstream Chromium is updated, automatically attempts to apply the Prism patches to the new revision, reports any conflicts, and opens a pull request with the rebase result.
+    \item Develop a \textbf{conflict resolution guide} that analyses which upstream Chromium files were changed in the new revision and cross-references them with the Prism patch set to predict rebase difficulty before attempting the rebase.
+\end{itemize}

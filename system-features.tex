@@ -1,0 +1,272 @@
+\chapter{System Features}
+
+\section{Feature 1: Prism AI Toolbar Button}
+
+\subsection{Description and Priority}
+The Prism AI Button is a custom toolbar component integrated into the Chromium browser toolbar. It serves as the primary entry point for all AI-assisted features. It is a \textbf{high-priority} feature as it ties the browser UI to the AI backend.
+
+\subsection{Implementation Details}
+The button is implemented in C++ as the class \texttt{PrismAIButton}, which extends Chromium's \texttt{ToolbarButton} class. Key implementation aspects:
+\begin{itemize}[leftmargin=*]
+    \item The class is defined in \texttt{chrome/browser/ui/views/toolbar/prism\_ai\_button.h} and implemented in \texttt{prism\_ai\_button.cc}.
+    \item It uses the custom vector icon \texttt{kPrismAiIcon} defined in \texttt{chrome/app/vector\_icons/prism\_ai.icon}, which renders a prism-shaped double triangle on a 16$\times$16 canvas.
+    \item The tooltip text is set to ``Prism AI''.
+    \item When clicked, \texttt{OnButtonPressed()} opens a new foreground tab to \texttt{http://127.0.0.1:7788} using the browser's \texttt{OpenURL()} method with \texttt{PAGE\_TRANSITION\_TYPED} transition type.
+    \item The button is added as a child view in \texttt{ToolbarView::Init()} after the Home button, and a raw pointer \texttt{prism\_ai\_button\_} is maintained in \texttt{ToolbarView}.
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+FR-01
+
+\section{Feature 2: Always-On Chrome DevTools Protocol (CDP)}
+
+\subsection{Description and Priority}
+CDP is the communication backbone between the AI agent and the browser. Without CDP being active, the AI agent cannot control or inspect browser state. This feature is \textbf{high-priority}.
+
+\subsection{Implementation Details}
+In \texttt{chrome/app/chrome\_main.cc}, the following logic is injected at browser startup:
+\begin{itemize}[leftmargin=*]
+    \item After the command line is initialised, the code checks whether \texttt{--remote-debugging-port} or \texttt{--remote-debugging-pipe} switches are already set.
+    \item If neither is present, \texttt{--remote-debugging-port=9222} is appended programmatically, guaranteeing CDP is always available.
+    \item This eliminates the need for users to start the browser with special flags.
+\end{itemize}
+The CDP endpoint is accessible at \texttt{ws://127.0.0.1:9222} from the local machine only, providing a WebSocket interface for tab management, DOM access, JavaScript execution, and input simulation.
+
+\subsection{Functional Requirements Supported}
+FR-02
+
+\section{Feature 3: AI Agent Backend}
+
+\subsection{Description and Priority}
+The AI agent server is the intelligence core of Prism. It is a Python application that serves the chat UI, processes user commands using an LLM, and drives the browser via CDP. This is a \textbf{high-priority} feature.
+
+\subsection{Implementation Details}
+\begin{itemize}[leftmargin=*]
+    \item The server listens on \texttt{http://127.0.0.1:7788} (loopback only).
+    \item On receiving a user command, the server sends the command to a locally-running LLM (e.g., via the Ollama REST API at \texttt{http://127.0.0.1:11434}).
+    \item The LLM decomposes the command into a sequence of browser automation actions (a ``plan'').
+    \item Each action is executed by sending the corresponding CDP command over WebSocket to the browser at \texttt{ws://127.0.0.1:9222}.
+    \item Common CDP actions include: \texttt{Target.createTarget}, \texttt{Page.navigate}, \texttt{DOM.getDocument}, \texttt{Input.dispatchMouseEvent}, and \texttt{Runtime.evaluate}.
+    \item Results and status messages are returned to the web UI in real time.
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+FR-03, FR-05, FR-06, FR-07, FR-08
+
+\section{Feature 4: Voice-to-Text Input}
+
+\subsection{Description and Priority}
+Voice command support makes Prism AI Browser accessible to users with limited mobility and enables hands-free productivity. This is a \textbf{medium-priority} feature.
+
+\subsection{Implementation Details}
+\begin{itemize}[leftmargin=*]
+    \item The AI agent web UI provides a microphone button that activates the browser's Web Speech API or a locally hosted STT engine.
+    \item The transcribed speech is populated in the text command field.
+    \item The user can review the transcribed text before submitting or it can be submitted automatically.
+    \item All audio processing is performed locally to maintain privacy compliance.
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+FR-04
+
+\section{Feature 5: Content Summarisation and Q\&A}
+
+\subsection{Description and Priority}
+Prism AI Browser can extract and summarise web page content, enabling users to quickly understand long articles, technical documents, or e-commerce product pages. This is a \textbf{medium-priority} feature.
+
+\subsection{Implementation Details}
+\begin{itemize}[leftmargin=*]
+    \item The AI agent executes \texttt{document.body.innerText} via \texttt{Runtime.evaluate} CDP call to extract page text.
+    \item The extracted text and user query are assembled into an LLM prompt.
+    \item The LLM generates a concise summary or direct answer.
+    \item Results are streamed back to the chat UI.
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+FR-06
+
+\section{Feature 6: Chromium Rebranding to Prism}
+
+\subsection{Description and Priority}
+All user-visible strings in the browser referring to ``Chromium'' are replaced with ``Prism'' to establish a distinct brand identity. This is a \textbf{low-priority} (cosmetic) feature but essential for the final product.
+
+\subsection{Implementation Details}
+\begin{itemize}[leftmargin=*]
+    \item Modifications are made to \texttt{chrome/app/chromium\_strings.grd}, the central string resource file for Chromium.
+    \item Over 100 user-facing strings are updated including: product name, window titles, installer messages, error messages, and taskbar/dock pin prompts.
+    \item The short product name becomes ``Prism''; the full description reads: \textit{``Prism is an AI agentic powered web browser that runs webpages and applications with lightning speed.''}.
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+FR-01 (brand identity)
+
+\section{Feature 8: Prism Homepage DevSpace}
+
+\subsection{Description and Priority}
+The Prism Homepage DevSpace is a custom, developer-oriented new-tab homepage served locally by the Prism browser. It replaces the standard blank new-tab page with a productivity-focused dashboard. This is a \textbf{medium-priority} feature that significantly enhances the day-to-day developer experience.
+
+\subsection{Overview}
+On opening a new tab, users are greeted with a full-screen homepage (\texttt{index.html}) featuring a live clock, motivational quotes, animated particle and matrix backgrounds, and a scrollable Dev Space panel. The homepage is designed specifically for the Prism AI Browser but also works in any modern browser when served via a local HTTP server (Python or Node.js).
+
+\subsection{Key Sub-Features}
+
+\subsubsection*{Live Clock and Greetings}
+\begin{itemize}[leftmargin=*]
+    \item A large, prominent time display (\texttt{\#zen-time}) supports both 12-hour and 24-hour formats selectable from settings.
+    \item Personalised motivational greetings are shown as primary and secondary quotes sourced from \texttt{quotes.json} and \texttt{dynamic\_quotes.json}.
+    \item The greeting updates daily, creating a fresh experience on each browser session.
+\end{itemize}
+
+\subsubsection*{Dev Space Panel}
+Scrolling below the clock reveals the Dev Space — a card-based launcher grid offering quick access to developer tools and utilities:
+\begin{longtable}{|p{4cm}|p{10cm}|}
+\hline
+\textbf{Tool Card} & \textbf{Description} \\ \hline
+\endhead
+Localhost & Quick-launch link to \texttt{http://localhost:3000} (configurable) for local web dev servers \\ \hline
+GitHub & Direct link to \texttt{github.com} for version control and repository management \\ \hline
+Dev Console & Opens an interactive in-page developer tools panel with browser shortcuts \\ \hline
+MDN Docs & Link to Mozilla Developer Network for web API documentation \\ \hline
+Color Generator & Opens \texttt{dev-space/color-gen.html} — an interactive colour palette generator \\ \hline
+Prompt Synthesizer & Opens \texttt{dev-space/prompt-synthesizer.html} — an AI-powered prompt enhancement and refinement tool \\ \hline
+Speed Test & Embedded network speed test via \texttt{dev-space/speedtest/} \\ \hline
+Notepad Panel & Floating persistent notepad (\texttt{dev-space/notepad-panel.html}) that saves notes to \texttt{localStorage} \\ \hline
+Focus Settings & Configurable focus/distraction-free mode from \texttt{dev-space/focus-settings.html} \\ \hline
+Matrix Tester & Visual demo and configurator for the animated Matrix rain background effect \\ \hline
+\end{longtable}
+
+\subsubsection*{Animated Backgrounds}
+\begin{itemize}[leftmargin=*]
+    \item \texttt{matrix.js} renders a customisable Matrix-style green rain effect on a canvas element.
+    \item Floating particle animations (\texttt{createParticle()}) add ambient depth to the background.
+    \item Users can switch between wallpapers from the \texttt{images/Wallpapers/} collection.
+\end{itemize}
+
+\subsubsection*{System Information Display}
+\begin{itemize}[leftmargin=*]
+    \item RAM usage is displayed in real time using the browser's \texttt{performance.memory} API (where available).
+    \item Clock style selection is persisted via \texttt{localStorage}, with previews available in the settings panel (\texttt{clock-previews/}).
+\end{itemize}
+
+\subsection{Implementation Details}
+\begin{itemize}[leftmargin=*]
+    \item Built with plain HTML, CSS (\texttt{style.css}, Space Grotesk / JetBrains Mono fonts), and vanilla JavaScript (\texttt{script.js}).
+    \item No build step required for the homepage itself; it is served as static files.
+    \item Must be served from a local web server (not \texttt{file://}) due to CORS restrictions on \texttt{quotes.json} fetch calls.
+    \item Integrates tightly with Prism by linking to internal browser pages via special protocols, with fallback to standard URLs for compatibility.
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+Extended browser UX, developer productivity
+
+% ---------------------------------------------------------------
+
+\section{Feature 9: Aura AI Chat (with Image Generation)}
+
+\subsection{Description and Priority}
+Aura AI Chat is the primary conversational AI interface integrated into Prism Browser, accessible via a dedicated local web page. It supports multi-model text chat, AI-powered image generation, agentic task execution (browser automation), and persistent conversation history management. This is a \textbf{high-priority} feature representing the core user-facing AI capability of Prism.
+
+\subsection{Overview}
+The chat interface (\texttt{index.html}, branded ``Aura -- Your Agentic AI Assistant'') is built as a single-page application with a collapsible sidebar for conversation history, a main chat area, and a bottom input bar supporting both text and voice entry. It uses the \texttt{\#88E755} (Prism green) primary colour scheme and the \textit{Space Grotesk} / \textit{JetBrains Mono} font stack with a dark \texttt{\#0a0a0a} background.
+
+\subsection{AI Models Supported}
+
+\begin{longtable}{|p{3.5cm}|p{3.5cm}|p{7cm}|}
+\hline
+\textbf{Mode} & \textbf{Model} & \textbf{Description} \\ \hline
+\endhead
+Aura Mode & Gemini Pro (Google) & Default chat model via Gemini API; best for general conversation, reasoning, and summarisation \\ \hline
+DeepSeek V3.2 & DeepSeek-V3.2-Exp (Hugging Face) & Advanced reasoning model; first request may take 20--30 s while the model loads on the Hugging Face inference server \\ \hline
+\end{longtable}
+
+Users switch between models via the ``Select AI Service'' dropdown in the interface.
+
+\subsection{AI Image Generation}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Engine:} FLUX.2 Klein (\texttt{black-forest-labs/flux.2-klein-4b}) via the OpenRouter unified AI gateway API.
+    \item \textbf{Trigger:} Users activate image generation by natural language (e.g., ``generate image of a futuristic city'', ``draw a cute robot'').
+    \item \textbf{Display:} Generated images are returned as Base64-encoded inline data URIs and rendered directly in the chat. A direct URL fallback is provided.
+    \item \textbf{Caching:} Image results are cached to avoid redundant API calls for repeated prompts.
+    \item \textbf{Download:} Users can download generated images directly from the chat message.
+\end{itemize}
+
+\subsection{Agentic Task Execution}
+The \texttt{task-executor.js} module, instantiated as a \texttt{TaskExecutor} class, intercepts commands with recognised patterns using regular expressions and executes real browser actions. Supported task categories:
+
+\begin{longtable}{|p{3.5cm}|p{10cm}|}
+\hline
+\textbf{Category} & \textbf{Example Commands} \\ \hline
+\endhead
+YouTube & ``open youtube and search cocomelon'' \\ \hline
+Search Engines & ``google search artificial intelligence'', ``search wikipedia quantum physics'' \\ \hline
+Social Media & ``open twitter and search AI news'', ``open reddit and search programming'', ``open github and search react'' \\ \hline
+Entertainment & ``play imagine dragons on spotify'', ``open netflix and search stranger things'', ``search amazon wireless headphones'' \\ \hline
+Productivity & ``set timer for 5 minutes'', ``create event for team meeting tomorrow'', ``check weather in New York'', ``open calculator'' \\ \hline
+Navigation & ``open maps coffee shops near me'', ``send email to user@example.com'' \\ \hline
+General Web & ``open github.com'', ``open google.com'' \\ \hline
+\end{longtable}
+
+All tasks that open external URLs or perform browser navigation require user confirmation via an in-UI dialog. A ``Don't show again'' option is available for frequently approved actions.
+
+\subsection{Conversation History Management}
+\begin{itemize}[leftmargin=*]
+    \item Conversations are stored persistently in \texttt{localStorage} under named sessions, listed in the collapsible left sidebar.
+    \item A search bar (\texttt{\#history-search}) filters conversations by keyword in real time.
+    \item Export and import of chat history as JSON files is supported via the sidebar footer buttons.
+    \item ``New Chat'' creates a fresh session; ``Clear History'' removes all saved sessions.
+\end{itemize}
+
+\subsection{Memory Integration}
+Two optional memory backends are supported:
+\begin{itemize}[leftmargin=*]
+    \item \texttt{local-memory.js}: Stores user context (facts the AI learns about the user) in \texttt{localStorage} for offline, privacy-first persistent memory.
+    \item \texttt{supermemory.js}: Optional integration with the Supermemory cloud service for cross-device memory synchronisation (requires API key; opt-in only to preserve privacy goals).
+\end{itemize}
+
+\subsection{Error Handling and Reliability}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Gemini API 503:} Exponential backoff retry with up to 5 attempts (delays: 1 s, 2 s, 4 s, 8 s, 16 s). Real-time retry status is shown to the user.
+    \item \textbf{DeepSeek 503 (model loading):} Same exponential backoff strategy; user is informed that model loading may take 20--30 s.
+    \item \textbf{401/403:} Authentication errors with clear user guidance on API key setup.
+    \item \textbf{429:} Rate limit detection with a wait-and-retry message.
+    \item \textbf{Network errors:} Connection issue detection with actionable error messages.
+\end{itemize}
+
+\subsection{Implementation Details}
+\begin{itemize}[leftmargin=*]
+    \item Built with HTML5, Tailwind CSS (via CLI build -- \texttt{input.css} $\rightarrow$ \texttt{styles.css}), and vanilla JavaScript.
+    \item Tailwind custom colour: \texttt{primary: \#88E755} (Prism green); config in \texttt{tailwind.config.js}.
+    \item Lucide icons loaded from jsDelivr CDN (switched from unpkg to fix MIME type error).
+    \item Production CSS built via \texttt{npm run build:css:prod} (minified); development via \texttt{npm run build:css} (watch mode).
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+FR-03 (NLP command processing), FR-04 (voice input), FR-06 (content summarisation), FR-08 (privacy-first local processing)
+
+% ---------------------------------------------------------------
+
+\section{Feature 7: Patch-Based Build and Distribution System}
+
+\subsection{Description and Priority}
+Prism maintains all its customisations as a compact set of Git patches applied on top of a pinned Chromium base revision. This allows contributors to reproduce the build on any machine without hosting the full Chromium repository. This is a \textbf{high-priority} operational feature.
+
+\subsection{Implementation Details}
+\begin{itemize}[leftmargin=*]
+    \item \texttt{BASE\_REVISION.txt}: Records the Chromium commit SHA that Prism patches are based on.
+    \item \texttt{patches/0001-prism-working-tree.diff}: Contains all modifications to existing Chromium files (diff format).
+    \item \texttt{patches/0002-prism-untracked-new-files.diff}: Contains new files added by Prism (vector icon, AI button source files).
+    \item \texttt{scripts/apply\_patches.sh}: Validates the Chromium checkout revision and applies all patches in order. Supports options \texttt{--check}, \texttt{--skip-base-check}, and \texttt{--patch-dir}.
+    \item \texttt{scripts/build\_prism.sh}: One-command wrapper that applies patches and invokes \texttt{gn gen} + \texttt{ninja} to build the \texttt{chrome} target.
+\end{itemize}
+
+\subsection{Functional Requirements Supported}
+The patch-based build and distribution system is a foundational infrastructure component that underpins every functional requirement in this document.
+Without a reproducible, patch-managed build pipeline, none of the Prism-specific features could be reliably compiled, tested, or delivered to end users.
+Specifically:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{FR-01 -- FR-08 (all features):} Every Prism capability -- the AI toolbar button, CDP integration, AI agent server, voice processing, tab management, form automation, content summarisation, and privacy-first inference -- is delivered exclusively through the patch set applied on top of Chromium. A broken or non-reproducible patch application would prevent any of these features from functioning.
+    \item \textbf{Reproducible Builds:} \texttt{BASE\_REVISION.txt} pins the exact Chromium commit SHA, ensuring that the C++ patches in \texttt{patches/0001-*} and \texttt{patches/0002-*} always apply cleanly against the intended source tree, regardless of upstream Chromium development activity.
+    \item \textbf{Complete Runtime Deployment:} The packaging stage (Stage~6) bundles the compiled Prism binary together with the AI agent (\texttt{ai-chat/}) and the custom new-tab homepage (\texttt{homepage-devspace/}) into a single distributable archive. This ensures all runtime components required by FR-01 through FR-08 are co-deployed and version-matched.
+    \item \textbf{Patch Drift Detection:} If an upstream Chromium change modifies a file touched by a Prism patch, \texttt{apply\_patches.sh} fails immediately with a conflict report, protecting the integrity of all features that depend on those patched files.
+\end{itemize}

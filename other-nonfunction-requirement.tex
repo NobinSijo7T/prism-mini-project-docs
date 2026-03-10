@@ -1,0 +1,69 @@
+\chapter{Other Non-Functional Requirements}
+
+\section{Performance Requirements}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Browser Startup Overhead:} The CDP switch injection at startup adds negligible overhead (single conditional check on the command-line object) with no measurable impact on browser launch time.
+    \item \textbf{AI Command Latency:} Simple single-step commands (e.g., ``open a new tab'') shall execute within 2 seconds on a machine with a modern LLM running locally. Multi-step agentic tasks may take longer depending on the complexity of the plan and network page load times.
+    \item \textbf{LLM Inference Speed:} For smooth interaction, token generation by the local LLM shall sustain at least 10 tokens/second on recommended hardware (8 GB RAM, modern CPU).
+    \item \textbf{CDP Round-Trip Latency:} CDP commands sent over the loopback WebSocket shall complete with latency under 10 ms, excluding page-load wait time.
+    \item \textbf{UI Responsiveness:} The browser UI (toolbar, tabs, address bar) shall remain fully responsive during AI agent processing, as the agent runs in a separate Python process.
+\end{itemize}
+
+\section{Safety Requirements}
+\begin{itemize}[leftmargin=*]
+    \item The AI agent shall not execute browser actions that could cause irreversible data loss (e.g., deleting browser profiles) without explicit user confirmation.
+    \item The CDP interface is bound to the loopback address (\texttt{127.0.0.1}) only; it must not be exposed on any network interface accessible from the internet.
+    \item AI-generated JavaScript executed via \texttt{Runtime.evaluate} shall be sandboxed within the browser's existing renderer security model.
+\end{itemize}
+
+\section{Security Requirements}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{No Data Exfiltration:} The AI agent shall establish no connections to external servers for AI processing. All LLM inference and STT processing shall be performed on-device.
+    \item \textbf{Loopback Binding:} Both the AI agent server (port 7788) and the CDP endpoint (port 9222) shall accept connections from \texttt{127.0.0.1} only.
+    \item \textbf{Session Isolation:} The AI agent shall not access content from other browser profiles or user sessions without explicit permission.
+    \item \textbf{Input Sanitisation:} User commands passed to the LLM shall be sanitised to prevent prompt injection attacks that could cause the model to generate harmful CDP instructions.
+    \item \textbf{Chromium Security Baseline:} All security features inherited from Chromium (sandboxed renderer processes, site isolation, safe browsing) shall remain fully active in Prism.
+\end{itemize}
+
+\section{Software Quality Attributes}
+
+\subsection{Reliability}
+\begin{itemize}[leftmargin=*]
+    \item The browser shall be at least as stable as the underlying Chromium base revision on which it is built.
+    \item If the AI agent server is not running, clicking the Prism AI button shall open a new tab showing a connection error page; the rest of the browser shall function normally.
+    \item If a CDP command fails or times out, the AI agent shall report an informative error to the UI and allow the user to retry.
+\end{itemize}
+
+\subsection{Maintainability}
+\begin{itemize}[leftmargin=*]
+    \item All Prism-specific code shall be clearly separated from upstream Chromium code through focused, well-described patch files.
+    \item Patch files shall be regenerated against a new Chromium base revision when the upstream drifts significantly, using the procedure documented in the \texttt{README.md}.
+    \item New features shall each be captured in separate, logically named patch files (e.g., \texttt{0003-voice-input.diff}) to enable independent review and rollback.
+\end{itemize}
+
+\subsection{Usability}
+\begin{itemize}[leftmargin=*]
+    \item The Prism AI Button shall be immediately identifiable in the toolbar with a distinct icon and a clear ``Prism AI'' tooltip on hover.
+    \item The AI agent chat interface shall provide clear feedback: a progress indicator during multi-step task execution, and colour-coded success/failure messages on completion.
+    \item Voice commands shall be acknowledged with a visual recording indicator in the UI.
+    \item Users with no technical knowledge shall be able to perform basic AI-assisted browsing tasks without consulting documentation.
+\end{itemize}
+
+\subsection{Portability}
+\begin{itemize}[leftmargin=*]
+    \item Prism shall build and run on all platforms supported by Chromium: Linux (primary), macOS, and Windows 10 or later.
+    \item The patch set shall be platform-independent where possible; platform-specific code sections in the patches shall use Chromium's \texttt{BUILDFLAG(IS\_WIN)}, \texttt{BUILDFLAG(IS\_MAC)}, and \texttt{BUILDFLAG(IS\_LINUX)} guards.
+\end{itemize}
+
+\subsection{Extensibility}
+\begin{itemize}[leftmargin=*]
+    \item The AI agent backend shall be designed with a modular tool interface, allowing new browser automation capabilities (e.g., screenshot capture, PDF export) to be added as separate tool modules without modifying core agent logic.
+    \item Chromium extensions that interact with the Prism AI agent via the standard Chrome Extension Messaging API shall be supportable.
+\end{itemize}
+
+\section{Business Rules}
+\begin{itemize}[leftmargin=*]
+    \item Prism AI Browser is developed for educational and research purposes as a final year project.
+    \item The project is open-source and its patch repository is publicly available on GitHub.
+    \item The browser may not be distributed commercially without compliance with the Chromium / BSD licence terms.
+\end{itemize}

@@ -1,0 +1,95 @@
+\chapter{Overall Description}
+
+\section{Product Perspective}
+Prism AI Browser is a new, self-contained product that is an evolution of the open-source Chromium browser. It does not replace Chromium; instead it extends Chromium's capabilities by:
+\begin{itemize}[leftmargin=*]
+    \item Adding a custom AI toolbar button (\texttt{PrismAIButton}) built in C++ using Chromium's Views UI framework.
+    \item Guaranteeing that the Chrome DevTools Protocol (CDP) remote debugging server is always active on port 9222 from browser startup, enabling programmatic browser control.
+    \item Shipping with a companion Python-based AI agent server that listens on \texttt{http://127.0.0.1:7788}, interprets natural language and voice commands, and drives the browser via CDP.
+\end{itemize}
+
+Figure~\ref{fig:system-context} illustrates the high-level relationship between the Prism browser, the AI agent backend, and the user.
+
+\begin{figure}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+    box/.style  ={draw, rounded corners=5pt,
+                  minimum width=3.6cm, minimum height=1.3cm,
+                  align=center, fill=blue!8, font=\small},
+    actor/.style={draw, ellipse,
+                  minimum width=2.6cm, minimum height=1.1cm,
+                  align=center, fill=green!10, font=\small},
+    arrow/.style={-Stealth, thick},
+    lbl/.style  ={font=\scriptsize, fill=white, inner sep=2pt}
+]
+    % ---- Nodes ----
+    \node[actor] (user)  at (0,    0)    {User};
+    \node[box]   (prism) at (5.5,  0)    {Prism Browser\\(Chromium + AI Button)};
+    \node[box]   (agent) at (11.5, 2.2)  {AI Agent Server\\(Python, port 7788)};
+    \node[box]   (cdp)   at (11.5,-2.2)  {CDP Interface\\(port 9222)};
+    \node[actor] (web)   at (17.0, 0)    {Web /\\Internet};
+
+    % ---- Arrows ----
+    \draw[arrow] (user)  -- node[lbl, above]{voice / text}   (prism);
+    \draw[arrow] (prism.north east) -- node[lbl, above, sloped]{HTTP request}  (agent.west);
+    \draw[arrow] (agent) -- node[lbl, right]{CDP commands}  (cdp);
+    \draw[arrow] (cdp.west) to[out=180, in=270]
+        node[lbl, below, sloped]{DOM / nav control} (prism.south);
+    \draw[arrow] (prism.south east) -- node[lbl, below, sloped]{HTTP/S} (web.west);
+\end{tikzpicture}}
+\caption{Prism AI Browser -- System Context Diagram}
+\label{fig:system-context}
+\end{figure}
+
+\section{Product Functions}
+The primary functions of Prism AI Browser are summarised below:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Natural Language Browsing:} Accept text or voice-based natural language commands from the user and translate them into browser actions.
+    \item \textbf{Agentic Task Execution:} Break complex user requests into sub-tasks and execute them autonomously using multi-step reasoning.
+    \item \textbf{Tab Management:} Open, close, navigate, reload, and organise browser tabs in response to user instructions.
+    \item \textbf{Content Understanding:} Extract, summarise, and reason about web page content using the embedded LLM.
+    \item \textbf{Form Automation:} Automatically fill web forms with data provided or inferred by the AI agent.
+    \item \textbf{Voice Control:} Transcribe speech input using a local Speech-to-Text engine and pass the result to the AI agent.
+    \item \textbf{Settings Management:} Adjust browser settings (homepage, extensions, privacy controls) via natural language.
+    \item \textbf{Privacy-Centric Operation:} Process all AI inference locally; no user data or page content is sent to external servers.
+\end{enumerate}
+
+\section{User Classes and Characteristics}
+\begin{longtable}{|p{3.5cm}|p{5.5cm}|p{4.5cm}|}
+\hline
+\textbf{User Class} & \textbf{Description} & \textbf{Technical Level} \\ \hline
+\endhead
+General User      & Everyday browser users wanting AI-assisted browsing and voice commands & Low -- no technical knowledge required \\ \hline
+Power User        & Developers and researchers who use the AI agent for task automation and scripting & Medium -- comfortable with CLI and settings \\ \hline
+Accessibility User& Users with motor or visual impairments who rely on voice control & Low -- interaction via speech only \\ \hline
+Developer/Contributor & Engineers who extend, patch, and build Prism from source on Chromium & High -- proficient with C++, GN, and git \\ \hline
+\end{longtable}
+
+\section{Operating Environment}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Host OS:} Linux (primary), macOS, and Windows 10 or later.
+    \item \textbf{CPU:} x86-64 processor; ARM64 supported where Chromium supports it.
+    \item \textbf{RAM:} Minimum 4 GB; 8 GB or more recommended for on-device LLM inference.
+    \item \textbf{Storage:} Minimum 3 GB for the Chromium build; additional space for LLM model weights.
+    \item \textbf{Network:} Standard TCP/IP; the AI agent communicates locally only (loopback interface).
+    \item \textbf{Python:} Version 3.10 or later required for the AI agent server component.
+\end{itemize}
+
+\section{Design and Implementation Constraints}
+\begin{itemize}[leftmargin=*]
+    \item The project must remain a \textit{patch set} on top of a specific Chromium base revision recorded in \texttt{BASE\_REVISION.txt}, to facilitate reproducible builds.
+    \item The CDP port (9222) is hardcoded at launch via a command-line switch injection in \texttt{chrome\_main.cc} to guarantee availability.
+    \item The AI agent backend URL (\texttt{http://127.0.0.1:7788}) is hardcoded in \texttt{prism\_ai\_button.cc}; it communicates only over the loopback interface (no internet exposure).
+    \item All Chromium-specific branding strings (product name, descriptions) in \texttt{chromium\_strings.grd} are replaced with ``Prism'' equivalents.
+    \item The Prism icon (\texttt{prism\_ai.icon}) is a 16$\times$16 triangle vector icon registered in Chromium's vector icon build system.
+\end{itemize}
+
+\section{Assumptions and Dependencies}
+\begin{itemize}[leftmargin=*]
+    \item It is assumed that the user has a compatible machine capable of running the Chromium browser.
+    \item The AI agent server must be started independently before using Prism AI features; it is not auto-started by the browser in the current version.
+    \item The local LLM model weights must be downloaded and configured separately by the user or system administrator.
+    \item \texttt{depot\_tools} and a full Chromium source checkout are required to build Prism from source.
+\end{itemize}

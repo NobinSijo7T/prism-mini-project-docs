@@ -90,36 +90,36 @@ The Prism CI/CD pipeline is implemented as a GitHub Actions workflow that valida
 % -------------------------------------------------------
 %  Row 1  (y = 0)  — left → right
 % -------------------------------------------------------
-\node[stage] (sync)  at (0,    0) {1.\ Chromium Sync\\{\scriptsize(\texttt{gclient sync})}};
-\node[stage] (base)  at (5.5,  0) {2.\ Base Revision\\Check};
-\node[dec]   (bchk)  at (10.5, 0) {Revision\\match?};
-\node[stage] (patch) at (15.5, 0) {3.\ Apply Patches\\{\scriptsize(\texttt{apply\_patches.sh})}};
+\node[stage] (sync)  at (0,    0)   {1.\ Chromium Sync\\{\scriptsize(\texttt{gclient sync})}};
+\node[stage] (base)  at (5.5,  0)   {2.\ Base Revision\\Check};
+\node[dec]   (bchk)  at (10.5, 0)   {Revision\\match?};
+\node[stage] (patch) at (15.5, 0)   {3.\ Apply Patches\\{\scriptsize(\texttt{apply\_patches.sh})}};
 
 % -------------------------------------------------------
-%  Row 2  (y = -3.8)  — right → left
+%  Row 2  (y = -5.0)  — right → left   [wider gap gives routing room]
 % -------------------------------------------------------
-\node[stage] (build) at (15.5,-3.8) {4.\ GN Gen +\\Ninja Build};
-\node[dec]   (bres)  at (10.5,-3.8) {Build\\passes?};
-\node[stage] (test)  at (5.5, -3.8) {5.\ Run Unit +\\Integration Tests};
-\node[dec]   (tres)  at (1.5, -3.8) {Tests\\pass?};
+\node[stage] (build) at (15.5,-5.0) {4.\ GN Gen +\\Ninja Build};
+\node[dec]   (bres)  at (10.5,-5.0) {Build\\passes?};
+\node[stage] (test)  at (5.5, -5.0) {5.\ Run Unit +\\Integration Tests};
+\node[dec]   (tres)  at (1.5, -5.0) {Tests\\pass?};
 
 % -------------------------------------------------------
-%  Row 3  (y = -7.8)
+%  Row 3  (y = -9.5)  [wider gap]
 % -------------------------------------------------------
-\node[stage] (rel)   at (0,   -7.8) {6.\ Package\\Binary};
-\node[stage] (pub)   at (5.5, -7.8) {7.\ Publish Release\\Artefact};
-\node[fail]  (abrt)  at (10.5,-7.8) {Abort \& Notify\\(email / Slack)};
+\node[stage] (rel)   at (0,   -9.5) {6.\ Package\\Binary};
+\node[stage] (pub)   at (5.5, -9.5) {7.\ Publish Release\\Artefact};
+\node[fail]  (abrt)  at (10.5,-9.5) {Abort \& Notify\\(email / Slack)};
 
 % -------------------------------------------------------
 %  Arrows — Row 1
 % -------------------------------------------------------
-\draw[arr] (sync)  -- (base);
-\draw[arr] (base)  -- (bchk);
-\draw[arr] (bchk)  -- node[lbl, above]{Yes} (patch);
+\draw[arr] (sync) -- (base);
+\draw[arr] (base) -- (bchk);
+\draw[arr] (bchk) -- node[lbl, above]{Yes} (patch);
 
-% bchk No → re-sync (arc below row 1)
-\draw[arr] (bchk.south) -- ++(0,-0.7) -- ++(-14.0,0)
-           node[lbl, above, pos=0.5]{No --- re-sync}
+% bchk No → re-sync: drop, run left, enter sync.west
+\draw[arr] (bchk.south) -- ++(0,-1.2)
+           -- node[lbl, above, pos=0.5]{No --- re-sync} ++(-14.5,0)
            |- (sync.west);
 
 % -------------------------------------------------------
@@ -134,19 +134,27 @@ The Prism CI/CD pipeline is implemented as a GitHub Actions workflow that valida
 \draw[arr] (bres)  -- node[lbl, above]{Yes} (test);
 \draw[arr] (test)  -- (tres);
 
-% bres No → abort (straight down, same x)
-\draw[arr] (bres.south) -- ++(0,-0.7) -|
-           node[lbl, above, pos=0.2]{No} (abrt.north);
+% bres No → abrt.north: straight vertical, both at x = 10.5
+\draw[arr] (bres.south) -- node[lbl, right]{No} (abrt.north);
 
-% tres No → abort
-\draw[arr] (tres.south) -- ++(0,-1.5) -|
-           node[lbl, above, pos=0.15]{No} (abrt.south west);
+% tres No → abrt.west:
+%   exit tres.east → tiny right step (stays in tres-test gap) →
+%   drop to inter-row channel (y = -7.5, above all row-3 nodes) →
+%   run right to abrt.west x (= 10.5 - 1.7 = 8.8) →
+%   drop into abrt.west
+%   This horizontal (x: 3.4 → 8.8) stays BELOW 10.5, so never
+%   crosses the bres→abrt vertical at x = 10.5.
+\draw[arr] (tres.east) -- ++(0.5, 0)
+           -- ++(0, -2.5)
+           -- ++(5.4, 0)
+           -- node[lbl, right, pos=0.5]{No} (abrt.west);
 
 % -------------------------------------------------------
 %  Arrows — Row 2 → Row 3
 % -------------------------------------------------------
-\draw[arr] (tres.west) -- ++(-0.5,0) |-
-           node[lbl, right, pos=0.4]{Yes} (rel.north);
+% tres Yes → rel: south, short drop, step left, down into rel.north
+\draw[arr] (tres.south) -- ++(0,-0.8) -- ++(-1.5, 0)
+           -- node[lbl, right, pos=0.6]{Yes} (rel.north);
 
 % -------------------------------------------------------
 %  Arrows — Row 3

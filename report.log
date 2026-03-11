@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.9)  11 MAR 2026 11:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.9)  11 MAR 2026 11:59
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1106,7 +1106,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--22
  []
 
 ) [2] (report-abstract.tex) [3] (document-control-data-sheet.tex
-Underfull \hbox (badness 10000) in paragraph at lines 24--24
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
 []|\OT1/ptm/m/n/12 (+20) Project Lead, AI Back-end
  []
 
@@ -1177,37 +1177,37 @@ r that lis-tens on \OT1/cmtt/m/n/12 http://127.0.0.1:7788\OT1/ptm/m/n/12 (-20)
 [4
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 64--64
+Underfull \hbox (badness 10000) in paragraph at lines 65--65
 []|\OT1/ptm/m/n/12 (+20) Low -- no tech-ni-cal
  []
 
 
-Underfull \hbox (badness 6995) in paragraph at lines 65--65
+Underfull \hbox (badness 6995) in paragraph at lines 66--66
 \OT1/ptm/m/n/12 (+20) use the AI agent for task
  []
 
 
-Underfull \hbox (badness 7649) in paragraph at lines 65--65
+Underfull \hbox (badness 7649) in paragraph at lines 66--66
 []|\OT1/ptm/m/n/12 (+20) Medium -- com-fort-able
  []
 
 
-Underfull \hbox (badness 4792) in paragraph at lines 66--66
+Underfull \hbox (badness 4792) in paragraph at lines 67--67
 []|\OT1/ptm/m/n/12 (+20) Users with mo-tor or vi-sual
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--66
+Underfull \hbox (badness 10000) in paragraph at lines 67--67
 []|\OT1/ptm/m/n/12 (+20) Low -- in-ter-ac-tion via
  []
 
 
-Overfull \hbox (6.82811pt too wide) in paragraph at lines 67--67
+Overfull \hbox (6.82811pt too wide) in paragraph at lines 68--68
 []|\OT1/ptm/m/n/12 (-20) Developer/Contributor| 
  []
 
 
-Underfull \hbox (badness 1331) in paragraph at lines 67--67
+Underfull \hbox (badness 1331) in paragraph at lines 68--68
 []|\OT1/ptm/m/n/12 (+20) Engineers who ex-tend, patch,
  []
 
@@ -1241,17 +1241,17 @@ rd Chromium browser UI el-e-ments (ad-dress bar, back/forward/reload
 [7
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 46--46
+Underfull \hbox (badness 10000) in paragraph at lines 47--47
 []|\OT1/ptm/m/n/12 (+20) A new fore-ground tab opens nav-i-gat-ing to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 62--62
+Underfull \hbox (badness 10000) in paragraph at lines 63--63
 []|\OT1/ptm/m/n/12 (+20) CDP Web-Socket end-point ac-tive at
  []
 
 [8]
-Underfull \hbox (badness 1721) in paragraph at lines 110--110
+Underfull \hbox (badness 1721) in paragraph at lines 111--111
 []|\OT1/ptm/m/n/12 (+20) Browser tabs are cre-ated, de-stroyed, or switched as
  []
 
@@ -1300,41 +1300,41 @@ Overfull \hbox (15.24858pt too wide) in paragraph at lines 106--107
  []
 
 [15]
-Underfull \hbox (badness 10000) in paragraph at lines 126--126
+Underfull \hbox (badness 10000) in paragraph at lines 127--127
 []|\OT1/ptm/m/n/12 (+20) Quick-launch link to \OT1/cmtt/m/n/12 http://localhost
 :3000
  []
 
 
-Underfull \hbox (badness 4608) in paragraph at lines 129--129
+Underfull \hbox (badness 4608) in paragraph at lines 130--130
 []|\OT1/ptm/m/n/12 (+20) Link to Mozilla De-vel-oper Net-work for web API
  []
 
 
-Underfull \hbox (badness 1577) in paragraph at lines 130--130
+Underfull \hbox (badness 1577) in paragraph at lines 131--131
 []|\OT1/ptm/m/n/12 (+20) Opens \OT1/cmtt/m/n/12 dev-space/color-gen.html \OT1/p
 tm/m/n/12 (+20) | an in-ter-ac-tive
  []
 
 
-Underfull \hbox (badness 2941) in paragraph at lines 131--131
+Underfull \hbox (badness 2941) in paragraph at lines 132--132
 []|\OT1/ptm/m/n/12 (+20) Opens \OT1/cmtt/m/n/12 dev-space/prompt-synthesizer.ht
 ml \OT1/ptm/m/n/12 (+20) | an
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
 []|\OT1/ptm/m/n/12 (+20) Floating per-sis-tent notepad
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 133--133
+Underfull \hbox (badness 10000) in paragraph at lines 134--134
 \OT1/ptm/m/n/12 (+20) (\OT1/cmtt/m/n/12 dev-space/notepad-panel.html\OT1/ptm/m/
 n/12 (+20) ) that saves notes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--134
+Underfull \hbox (badness 10000) in paragraph at lines 135--135
 []|\OT1/ptm/m/n/12 (+20) Configurable focus/distraction-free mode from
  []
 
@@ -1346,23 +1346,23 @@ m/n/12 file://\OT1/ptm/m/n/12 (-20) ) due to CORS re-stric-tions on \OT1/cmtt/m
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--180
+Underfull \hbox (badness 10000) in paragraph at lines 181--181
 []|\OT1/ptm/m/n/12 (-1) DeepSeek-V3.2-Exp
  []
 
 [17]
-Underfull \hbox (badness 1701) in paragraph at lines 207--207
+Underfull \hbox (badness 1701) in paragraph at lines 208--208
 []|\OT1/ptm/m/n/12 (+20) ``open maps cof-fee shops near me'', ``send email to
  []
 
-ignored error: Infinite glue shrinkage found in box being split [18]
+ignored error: Infinite glue shrinkage found in box being split [18] [19]
 Overfull \hbox (5.15172pt too wide) in paragraph at lines 241--242
 []\OT1/ptm/m/n/12 (-20) Tailwind cus-tom colour: \OT1/cmtt/m/n/12 primary: #88E
 755 \OT1/ptm/m/n/12 (-20) (Prism green); con-fig in \OT1/cmtt/m/n/12 tailwind.c
 onfig.js\OT1/ptm/m/n/12 (-20) . 
  []
 
-[19]
+
 Overfull \hbox (12.22668pt too wide) in paragraph at lines 259--260
 []\OT1/cmtt/m/n/12 patches/0001-prism-working-tree.diff\OT1/ptm/m/n/12 (-20) : 
 Con-tains all mod-i-fi-ca-tions to ex-ist-ing Chromium
@@ -1467,57 +1467,57 @@ Overfull \hbox (4.86095pt too wide) in paragraph at lines 48--49
  []
 
 [31]
-Underfull \hbox (badness 10000) in paragraph at lines 167--167
+Underfull \hbox (badness 10000) in paragraph at lines 168--168
 []|\OT1/cmtt/m/n/12 gclient sync \OT1/ptm/m/n/12 (+20) /
  []
 
 
-Underfull \hbox (badness 2961) in paragraph at lines 167--167
+Underfull \hbox (badness 2961) in paragraph at lines 168--168
 []|\OT1/ptm/m/n/12 (+20) Syncs the Chromium source tree to the SHA
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 168--168
+Underfull \hbox (badness 10000) in paragraph at lines 169--169
 []|\OT1/cmtt/m/n/12 apply[]-patches.sh
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 169--169
+Underfull \hbox (badness 1796) in paragraph at lines 170--170
 \OT1/ptm/m/n/12 (+20) al-pha-bet-i-cal or-der from the \OT1/cmtt/m/n/12 patches
 / \OT1/ptm/m/n/12 (+20) di-rec-tory.
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 170--170
+Underfull \hbox (badness 10000) in paragraph at lines 171--171
 []|\OT1/ptm/m/n/12 (+20) Generates the build sys-tem with \OT1/cmtt/m/n/12 gn g
 en
  []
 
 
-Underfull \hbox (badness 1769) in paragraph at lines 170--170
+Underfull \hbox (badness 1769) in paragraph at lines 171--171
 \OT1/cmtt/m/n/12 out/Default \OT1/ptm/m/n/12 (+20) and builds the \OT1/cmtt/m/n
 /12 chrome \OT1/ptm/m/n/12 (+20) tar-get via
  []
 
 
-Underfull \hbox (badness 1748) in paragraph at lines 171--171
+Underfull \hbox (badness 1748) in paragraph at lines 172--172
 []|\OT1/ptm/m/n/12 (+20) Runs com-piled C++ unit tests (\OT1/cmtt/m/n/12 browse
 r[]-tests\OT1/ptm/m/n/12 (+20) ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 173--173
 []|\OT1/ptm/m/n/12 (+20) Bundles the Prism bi-nary, home-page
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 172--172
+Underfull \hbox (badness 10000) in paragraph at lines 173--173
 \OT1/ptm/m/n/12 (+20) (\OT1/cmtt/m/n/12 homepage-devspace/\OT1/ptm/m/n/12 (+20)
  ), and Aura AI chat
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 173--173
+Underfull \hbox (badness 10000) in paragraph at lines 174--174
 []|\OT1/ptm/m/n/12 (+20) GitHub Re-leases
  []
 
@@ -1559,12 +1559,12 @@ o-mat-i-cally
  []
 
 [37]) [38] (project-snapshots.tex
-<pic/1.png, id=964, 2504.35625pt x 1380.15625pt>
+<pic/1.png, id=965, 2504.35625pt x 1380.15625pt>
 File: pic/1.png Graphic file (type png)
 <use pic/1.png>
 Package pdftex.def Info: pic/1.png  used on input line 11.
 (pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
-<pic/2(devspace).png, id=965, 2504.35625pt x 1380.15625pt>
+<pic/2(devspace).png, id=966, 2504.35625pt x 1380.15625pt>
 File: pic/2(devspace).png Graphic file (type png)
 <use pic/2(devspace).png>
 Package pdftex.def Info: pic/2(devspace).png  used on input line 17.
@@ -1574,33 +1574,33 @@ Underfull \hbox (badness 3769) in paragraph at lines 18--18
 []\OT1/ptm/m/n/12 (+20) Figure 8.2: |Screen-shot 2: De-vS-pace
  []
 
-<pic/2(homepage(devsapce)-settings)).png, id=966, 1138.2525pt x 638.385pt>
+<pic/2(homepage(devsapce)-settings)).png, id=967, 1138.2525pt x 638.385pt>
 File: pic/2(homepage(devsapce)-settings)).png Graphic file (type png)
 <use pic/2(homepage(devsapce)-settings)).png>
 Package pdftex.def Info: pic/2(homepage(devsapce)-settings)).png  used on input
  line 27.
 (pdftex.def)             Requested size: 212.89546pt x 119.39491pt.
-<pic/2(colour generator).png, id=967, 1135.24126pt x 626.94225pt>
+<pic/2(colour generator).png, id=968, 1135.24126pt x 626.94225pt>
 File: pic/2(colour generator).png Graphic file (type png)
 <use pic/2(colour generator).png>
 Package pdftex.def Info: pic/2(colour generator).png  used on input line 33.
 (pdftex.def)             Requested size: 212.89546pt x 117.57051pt.
-<pic/2(notepad).png, id=968, 1144.87724pt x 634.16925pt>
+<pic/2(notepad).png, id=969, 1144.87724pt x 634.16925pt>
 File: pic/2(notepad).png Graphic file (type png)
 <use pic/2(notepad).png>
 Package pdftex.def Info: pic/2(notepad).png  used on input line 43.
 (pdftex.def)             Requested size: 212.89546pt x 117.91942pt.
-<pic/2(prompt synthesizer).png, id=969, 1129.821pt x 636.57825pt>
+<pic/2(prompt synthesizer).png, id=970, 1129.821pt x 636.57825pt>
 File: pic/2(prompt synthesizer).png Graphic file (type png)
 <use pic/2(prompt synthesizer).png>
 Package pdftex.def Info: pic/2(prompt synthesizer).png  used on input line 49.
 (pdftex.def)             Requested size: 212.89546pt x 119.95064pt.
-<pic/3(agentic ui).png, id=970, 2504.35625pt x 1380.15625pt>
+<pic/3(agentic ui).png, id=971, 2504.35625pt x 1380.15625pt>
 File: pic/3(agentic ui).png Graphic file (type png)
 <use pic/3(agentic ui).png>
 Package pdftex.def Info: pic/3(agentic ui).png  used on input line 59.
 (pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
-<pic/4(chatbox ui).png, id=971, 2504.35625pt x 1380.15625pt>
+<pic/4(chatbox ui).png, id=972, 2504.35625pt x 1380.15625pt>
 File: pic/4(chatbox ui).png Graphic file (type png)
 <use pic/4(chatbox ui).png>
 Package pdftex.def Info: pic/4(chatbox ui).png  used on input line 65.
@@ -1610,32 +1610,32 @@ Package pdftex.def Info: pic/4(chatbox ui).png  used on input line 65.
  <./pic/1.png> <./pic/2(devspace).png> <./pic/2(homepage(devsapce)-settings)).p
 ng> <./pic/2(colour generator).png> <./pic/2(notepad).png> <./pic/2(prompt synt
 hesizer).png>]
-<pic/5(chatbox output).png, id=982, 2504.35625pt x 1380.15625pt>
+<pic/5(chatbox output).png, id=983, 2504.35625pt x 1380.15625pt>
 File: pic/5(chatbox output).png Graphic file (type png)
 <use pic/5(chatbox output).png>
 Package pdftex.def Info: pic/5(chatbox output).png  used on input line 75.
 (pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
-<pic/6(chatbox output).png, id=983, 2504.35625pt x 1380.15625pt>
+<pic/6(chatbox output).png, id=984, 2504.35625pt x 1380.15625pt>
 File: pic/6(chatbox output).png Graphic file (type png)
 <use pic/6(chatbox output).png>
 Package pdftex.def Info: pic/6(chatbox output).png  used on input line 81.
 (pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
-<pic/7(image generation).png, id=984, 2504.35625pt x 1380.15625pt>
+<pic/7(image generation).png, id=985, 2504.35625pt x 1380.15625pt>
 File: pic/7(image generation).png Graphic file (type png)
 <use pic/7(image generation).png>
 Package pdftex.def Info: pic/7(image generation).png  used on input line 91.
 (pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
-<pic/8(agentic running).png, id=985, 2504.35625pt x 1380.15625pt>
+<pic/8(agentic running).png, id=986, 2504.35625pt x 1380.15625pt>
 File: pic/8(agentic running).png Graphic file (type png)
 <use pic/8(agentic running).png>
 Package pdftex.def Info: pic/8(agentic running).png  used on input line 97.
 (pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
-<pic/9(agentic output).png, id=986, 2504.35625pt x 1380.15625pt>
+<pic/9(agentic output).png, id=987, 2504.35625pt x 1380.15625pt>
 File: pic/9(agentic output).png Graphic file (type png)
 <use pic/9(agentic output).png>
 Package pdftex.def Info: pic/9(agentic output).png  used on input line 107.
 (pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
-<pic/10(agentic succeesful).png, id=987, 2504.35625pt x 1380.15625pt>
+<pic/10(agentic succeesful).png, id=988, 2504.35625pt x 1380.15625pt>
 File: pic/10(agentic succeesful).png Graphic file (type png)
 <use pic/10(agentic succeesful).png>
 Package pdftex.def Info: pic/10(agentic succeesful).png  used on input line 113
@@ -1690,13 +1690,13 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: E75397AB6A6EA891C987871DB2808F44;23366.
  ) 
 Here is how much of TeX's memory you used:
- 28643 strings out of 467871
- 561920 string characters out of 5414469
- 982733 words of memory out of 5000000
- 56379 multiletter control sequences out of 15000+600000
+ 28627 strings out of 467871
+ 561569 string characters out of 5414469
+ 982785 words of memory out of 5000000
+ 56363 multiletter control sequences out of 15000+600000
  691884 words of font info for 366 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,104p,1005b,963s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,104p,1005b,952s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmmi10.pfb><C:/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/MY LENOVO LOQ/AppData/Local/Progr
@@ -1706,9 +1706,9 @@ MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C
 :/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8
 a.pfb><C:/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on report.pdf (58 pages, 5098351 bytes).
+Output written on report.pdf (58 pages, 5097671 bytes).
 PDF statistics:
- 1148 PDF objects out of 1200 (max. 8388607)
+ 1149 PDF objects out of 1200 (max. 8388607)
  244 named destinations out of 1000 (max. 500000)
  106085 words of extra memory for PDF output out of 106986 (max. 10000000)
 

@@ -161,6 +161,7 @@ The Prism CI/CD pipeline is implemented as a GitHub Actions workflow that valida
 \subsection{Stage Details}
 
 \begin{longtable}{|p{1.5cm}|p{3.5cm}|p{9cm}|}
+\caption{CI/CD Pipeline Stage Details} \\
 \hline
 \textbf{Stage} & \textbf{Tool / Script} & \textbf{Description} \\ \hline
 \endhead
@@ -171,7 +172,6 @@ The Prism CI/CD pipeline is implemented as a GitHub Actions workflow that valida
 5 & GTest / pytest & Runs compiled C++ unit tests (\texttt{browser\_tests}, \texttt{unit\_tests}) and Python agent tests. Reports test results to CI. \\ \hline
 6 & Custom packaging & Bundles the Prism binary, homepage (\texttt{homepage-devspace/}), and Aura AI chat (\texttt{ai-chat/}) into a distributable archive (\texttt{.tar.gz} on Linux, \texttt{.zip} on Windows). \\ \hline
 7 & GitHub Releases API & Uploads the archive as a GitHub Release asset tagged with the Chromium base revision and a Prism version string. \\ \hline
-\caption{CI/CD Pipeline Stage Details}
 \end{longtable}
 
 \subsection{Key CI/CD Properties}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.9)  11 MAR 2026 11:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.9)  11 MAR 2026 21:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1101,7 +1101,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 10--23
  []
 
 ) [1] (acknowledgement.tex
-Underfull \hbox (badness 10000) in paragraph at lines 10--22
+Underfull \hbox (badness 10000) in paragraph at lines 10--21
 
  []
 
@@ -1422,13 +1422,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 211--211
 
 [26] [27]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 326.
-
-Overfull \hbox (37.35599pt too wide) in paragraph at lines 386--387
- [][] 
- []
-
-[28]) (testing.tex [29]
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 390.
+ [28]) (testing.tex [29]
 Chapter 7.
 
 Overfull \hbox (7.56735pt too wide) in paragraph at lines 15--16
@@ -1690,10 +1685,10 @@ Package rerunfilecheck Info: File `report.out' has not changed.
 (rerunfilecheck)             Checksum: E75397AB6A6EA891C987871DB2808F44;23366.
  ) 
 Here is how much of TeX's memory you used:
- 28627 strings out of 467871
- 561569 string characters out of 5414469
- 982785 words of memory out of 5000000
- 56363 multiletter control sequences out of 15000+600000
+ 28631 strings out of 467871
+ 561650 string characters out of 5414469
+ 982766 words of memory out of 5000000
+ 56367 multiletter control sequences out of 15000+600000
  691884 words of font info for 366 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,13n,104p,1005b,952s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1706,7 +1701,7 @@ MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C
 :/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8
 a.pfb><C:/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on report.pdf (58 pages, 5097671 bytes).
+Output written on report.pdf (58 pages, 5098022 bytes).
 PDF statistics:
  1149 PDF objects out of 1200 (max. 8388607)
  244 named destinations out of 1000 (max. 500000)

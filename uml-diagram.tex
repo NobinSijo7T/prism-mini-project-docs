@@ -308,28 +308,29 @@ Figure~\ref{fig:statechart} shows the lifecycle of the AI Agent for a single use
 
 \begin{figure}[H]
 \centering
+\resizebox{0.88\textwidth}{!}{%
 \begin{tikzpicture}[
-    state/.style={draw, rounded rectangle, minimum width=3.5cm,
-                  minimum height=0.95cm, align=center,
+    state/.style={draw, rounded rectangle, minimum width=3.8cm,
+                  minimum height=1.0cm, align=center,
                   fill=blue!10, font=\small},
     init/.style={draw, circle, fill=black, minimum size=9pt, inner sep=0},
     final/.style={draw, circle, fill=black, minimum size=9pt, inner sep=0,
                   double, double distance=2.5pt},
-    trans/.style={-, thick},
-    lbl/.style={font=\scriptsize, midway, fill=white, inner sep=2pt}
+    trans/.style={-Stealth, thick},
+    lbl/.style={font=\scriptsize, fill=white, inner sep=2pt}
 ]
 
 % ---- States ----
-\node[init]  (S)    at (0,   0)     {};
-\node[state] (IDLE) at (0,  -2.5)  {Idle};
-\node[state] (RECV) at (0,  -5.2)  {Receiving Input};
-\node[state] (STT)  at (-7.0,-8.2) {STT Processing\\(voice $\rightarrow$ text)};
-\node[state] (PLAN) at (0,  -8.2)  {LLM Planning};
-\node[state] (ERR)  at (7.0, -8.2) {Error State};
-\node[state] (EXEC) at (0,  -11.5) {Executing Actions\\via CDP};
-\node[state] (WAIT) at (7.0,-11.5) {Waiting for\\Page Load};
-\node[state] (DONE) at (0,  -15.0) {Completed};
-\node[final] (F)    at (0,  -17.0) {};
+\node[init]  (S)    at (0,    0)     {};
+\node[state] (IDLE) at (0,   -2.5)  {Idle};
+\node[state] (RECV) at (0,   -5.5)  {Receiving Input};
+\node[state] (STT)  at (-7.5,-9.0)  {STT Processing\\(voice $\rightarrow$ text)};
+\node[state] (PLAN) at (0,   -9.0)  {LLM Planning};
+\node[state] (ERR)  at (7.5, -9.0)  {Error State};
+\node[state] (EXEC) at (0,  -12.5)  {Executing Actions\\via CDP};
+\node[state] (WAIT) at (7.5,-12.5)  {Waiting for\\Page Load};
+\node[state] (DONE) at (0,  -16.0)  {Completed};
+\node[final] (F)    at (0,  -18.0)  {};
 
 % ---- Transitions ----
 
@@ -339,23 +340,26 @@ Figure~\ref{fig:statechart} shows the lifecycle of the AI Agent for a single use
 % Idle → Receiving Input
 \draw[trans] (IDLE) -- node[lbl, right]{user submits command} (RECV);
 
-% Receiving Input → LLM Planning  (text path, right side)
+% Receiving Input → LLM Planning  (text, straight down offset slightly right)
 \draw[trans] (RECV.south) -- node[lbl, right]{text command} (PLAN.north);
 
-% Receiving Input → STT Processing  (voice path, left side)
-\draw[trans] (RECV.west) -- ++(-1.0, 0) |-
-    node[lbl, left, near end]{voice detected} (STT.north);
+% Receiving Input → STT Processing  (voice, bypass left of STT box → enter from west)
+\draw[trans] (RECV.west) --
+    node[lbl, above, pos=0.5]{voice detected}
+    ++(-8.6, 0) |- (STT.west);
 
-% STT → LLM Planning
-\draw[trans] (STT.east) -- node[lbl, above]{transcription ready} (PLAN.west);
+% STT → LLM Planning  (horizontal; label centred below arrow)
+\draw[trans] (STT.east) --
+    node[lbl, below, pos=0.5]{transcription ready} (PLAN.west);
 
-% LLM Planning → Executing Actions
-\draw[trans] (PLAN.south) -- node[lbl, right]{plan generated} (EXEC.north);
+% LLM Planning → Executing Actions  (vertical; label to the left)
+\draw[trans] (PLAN.south) --
+    node[lbl, left, pos=0.5]{plan generated} (EXEC.north);
 
-% LLM Planning → Error State
+% LLM Planning → Error State  (horizontal)
 \draw[trans] (PLAN.east) -- node[lbl, above]{LLM error / timeout} (ERR.west);
 
-% Executing Actions ↔ Waiting for Page Load  (curved opposing arrows)
+% Executing Actions ↔ Waiting for Page Load
 \draw[trans] (EXEC.east) to[bend left=20]
     node[lbl, above]{await navigation} (WAIT.west);
 \draw[trans] (WAIT.west) to[bend left=20]
@@ -364,26 +368,26 @@ Figure~\ref{fig:statechart} shows the lifecycle of the AI Agent for a single use
 % Executing Actions → Completed
 \draw[trans] (EXEC.south) -- node[lbl, right]{all actions done} (DONE.north);
 
-% Executing Actions → Error State  (route: up from EXEC, right to ERR)
-\draw[trans] (EXEC.north east) -- ++(0, 0.9) -- ++(5.5, 0) --
+% Executing Actions → Error State  (CDP error: up from EXEC then right to ERR)
+\draw[trans] (EXEC.north east) -- ++(0, 1.0) -- ++(6.2, 0) --
     node[lbl, right]{CDP error} (ERR.south);
 
-% Error State → Receiving Input  (retry, route: up from ERR, left bend to RECV)
-\draw[trans] (ERR.north) -- ++(0, 1.2) -|
-    node[lbl, above, near start]{user retries} (RECV.east);
+% Error State → Receiving Input  (user retries: up then left to RECV.east)
+\draw[trans] (ERR.north) -- ++(0, 1.5) -|
+    node[lbl, above, pos=0.25]{user retries} (RECV.east);
 
-% Error State → Idle  (abort, route: down-left-up outside all nodes)
-\draw[trans] (ERR.south) -- ++(0, -1.0) -- (-2.5, -9.9)
-    -- node[lbl, left]{abort} (-2.5, -2.5) -- (IDLE.west);
+% Error State → Idle  (abort: right-side bypass, ERR east → far right → up → IDLE east)
+\draw[trans] (ERR.east) -- ++(2.0, 0) |-
+    node[lbl, above, pos=0.7]{abort} (IDLE.east);
 
 % Completed → Final
 \draw[trans] (DONE) -- (F);
 
-% Completed → Idle  (new command loop, route: left side, clear of STT box)
-\draw[trans] (DONE.west) -- ++(-2.3, 0) |-
-    node[lbl, right, near end]{new command} (IDLE.west);
+% Completed → Idle  (new command: deep-left bypass, well clear of STT box at x≈-9.4)
+\draw[trans] (DONE.west) -- ++(-11.0, 0) |-
+    node[lbl, right, pos=0.97]{new command} (IDLE.west);
 
-\end{tikzpicture}
+\end{tikzpicture}}
 \caption{State Chart Diagram -- AI Agent Command Lifecycle}
 \label{fig:statechart}
 \end{figure}

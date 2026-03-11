@@ -1,13 +1,27 @@
-\contentsline {table}{\numberline {1}{\ignorespaces Project Identification}}{1}{table.caption.2}%
-\contentsline {table}{\numberline {2}{\ignorespaces Team Members}}{1}{table.caption.3}%
-\contentsline {table}{\numberline {3}{\ignorespaces Document Revision History}}{1}{table.caption.4}%
-\contentsline {table}{\numberline {4}{\ignorespaces Technology Stack}}{2}{table.caption.5}%
+\contentsline {table}{\numberline {1}{\ignorespaces Project Identification}}{iv}{table.caption.2}%
+\contentsline {table}{\numberline {2}{\ignorespaces Team Members}}{iv}{table.caption.3}%
+\contentsline {table}{\numberline {3}{\ignorespaces Document Revision History}}{iv}{table.caption.4}%
+\contentsline {table}{\numberline {4}{\ignorespaces Technology Stack}}{v}{table.caption.5}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {1.1}{\ignorespaces Definitions, Acronyms, and Abbreviations}}{2}{table.1.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {2.1}{\ignorespaces User Classes and Characteristics}}{5}{table.2.1}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {3.1}{\ignorespaces FR-01: AI Toolbar Button Integration}}{8}{table.caption.7}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces FR-02: Guaranteed CDP Availability}}{8}{table.caption.8}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces FR-03: Natural Language Command Processing}}{9}{table.caption.9}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces FR-04: Voice Command Input}}{9}{table.caption.10}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces FR-05: AI-Driven Tab Management}}{9}{table.caption.11}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces FR-06: Page Content Extraction and Summarisation}}{10}{table.caption.12}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces FR-07: Intelligent Form Auto-Fill}}{10}{table.caption.13}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces FR-08: Privacy-First Local Processing}}{11}{table.caption.14}%
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces DevSpace Developer Tools}}{16}{table.4.1}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces AI Models Supported by Aura Chat}}{18}{table.4.2}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces Supported Agentic Task Execution Categories}}{19}{table.4.3}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {table}{\numberline {7.1}{\ignorespaces CI/CD Pipeline Stage Details}}{33}{table.7.1}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }

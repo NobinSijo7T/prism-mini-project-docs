@@ -4,8 +4,9 @@
 \usepackage{longtable} 
 \usepackage{caption}
 \usepackage{array}
-\captionsetup[table]{skip=10pt}
 \usepackage{titlesec}
+\usepackage{setspace}
+\usepackage{needspace}
 \usepackage{url}
 \usepackage[none]{hyphenat}
 \usepackage[bookmarks, colorlinks=true, pdfborder={0 0 0}, pdftitle={Prism AI Browser - Final Report}, pdfauthor={Nobin Sijo, Sanker Narayan, Prasanth P, Pranav P}, pdfsubject={Final Project Report}, pdfkeywords={AI Browser, Agentic AI, LLM, Privacy}, linkcolor=black, urlcolor=blue]{hyperref}
@@ -19,6 +20,35 @@
 \usepackage{microtype}
 \usepackage{ragged2e}
 \geometry{a4paper, margin=1in}
+
+% ── Heading typography (per project guidelines) ──────────────────────────────
+% Chapter / Section title: TNR 18 Bold, Centred
+\titleformat{\chapter}[display]
+  {\normalfont\fontsize{18}{22}\bfseries\centering}
+  {\chaptertitlename\ \thechapter}{10pt}{}
+\titlespacing*{\chapter}{0pt}{-10pt}{18pt}
+
+% Heading 2: TNR 16 Bold, Left-aligned, 3 blank lines before
+\titleformat{\section}
+  {\normalfont\fontsize{16}{20}\bfseries\raggedright}
+  {\thesection}{1em}{}
+\titlespacing*{\section}{0pt}{18pt}{6pt}
+
+% Heading 3: TNR 14 Bold, Left-aligned
+\titleformat{\subsection}
+  {\normalfont\fontsize{14}{18}\bfseries\raggedright}
+  {\thesubsection}{1em}{}
+\titlespacing*{\subsection}{0pt}{12pt}{4pt}
+
+% Heading 4: TNR 12 Bold, Left-aligned
+\titleformat{\subsubsection}
+  {\normalfont\fontsize{12}{16}\bfseries\raggedright}
+  {\thesubsubsection}{1em}{}
+\titlespacing*{\subsubsection}{0pt}{8pt}{3pt}
+
+% ── Caption placement: figure title below, table title above ─────────────────
+\captionsetup[figure]{position=below, skip=6pt}
+\captionsetup[table]{position=below, skip=6pt}
 \pagestyle{fancy}
 
 \setlength{\headheight}{14.49998pt}
@@ -50,17 +80,56 @@
     \fancyfoot[R]{\parbox[t]{5cm}{\raggedleft \footnotesize College Of Engineering \\ Karunagappally}} % Two-line footer
     \renewcommand{\footrulewidth}{0.4pt}
 }
+\fancypagestyle{certpage}{
+    \fancyhf{}
+    \fancyhead[L]{\small\textit{Prism AI Browser}}
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyfoot[L]{\small\textit{College of Engineering Karunagappally}}
+    \renewcommand{\footrulewidth}{0pt}
+}
+\fancypagestyle{frontmatter}{
+    \fancyhf{}
+    \fancyhead[L]{\small\textit{Prism AI Browser}}
+    \fancyhead[R]{\thepage}
+    \renewcommand{\headrulewidth}{0pt}
+    \fancyfoot[L]{\small\textit{College of Engineering Karunagappally}}
+    \renewcommand{\footrulewidth}{0pt}
+}
 \begin{document}
+
+% 1.5 line spacing for body text (guideline requirement)
+\onehalfspacing
 
 \renewcommand\bibname{References}
 
 \input{./title.tex}
+
+% iii. Certification Page
+\newpage
+\thispagestyle{certpage}
+\input{./certificate.tex}
+
+% --- Roman page numbering begins ---
+\newpage
+\pagenumbering{roman}
+
+% (Declaration -- standard academic page, kept before Acknowledgement)
+\input{./declaration.tex}
+
+% iv. Acknowledgement
+\newpage
+\input{./acknowledgement.tex}
+
+% v. Abstract
+\newpage
+\input{./report-abstract.tex}
+
+% Document Control Data Sheet (project-specific, after Abstract)
 \newpage
 \thispagestyle{dcds}
 \input{document-control-data-sheet.tex}
 \newpage
-\thispagestyle{empty} % Ensures title page has no header/footer
-\pagenumbering{roman}
+\thispagestyle{empty}
 
 % Table of Contents (Force No Header/Footer)
 \tableofcontents
@@ -72,6 +141,7 @@
 \thispagestyle{plain} % Apply empty header/footer for this page
 
 % List of Tables
+\newpage
 \listoftables
 \thispagestyle{plain}
 
@@ -88,6 +158,12 @@
 \input{./uml-diagram.tex}                   %6
 \input{./testing.tex}                       %7
 \input{./future-implementation.tex}         %8
-\input{./conclusion.tex}                    %9
+
+\newpage
+\input{./project-snapshots.tex}             %9
+\input{./conclusion.tex}                    %10
+
+\newpage
+\input{./references.tex}                    %11
 
 \end{document}

@@ -133,6 +133,7 @@ Speed Test & Embedded network speed test via \texttt{dev-space/speedtest/} \\ \h
 Notepad Panel & Floating persistent notepad (\texttt{dev-space/notepad-panel.html}) that saves notes to \texttt{localStorage} \\ \hline
 Focus Settings & Configurable focus/distraction-free mode from \texttt{dev-space/focus-settings.html} \\ \hline
 Matrix Tester & Visual demo and configurator for the animated Matrix rain background effect \\ \hline
+\caption{DevSpace Developer Tools}
 \end{longtable}
 
 \subsubsection*{Animated Backgrounds}
@@ -177,6 +178,7 @@ The chat interface (\texttt{index.html}, branded ``Aura -- Your Agentic AI Assis
 \endhead
 Aura Mode & Gemini Pro (Google) & Default chat model via Gemini API; best for general conversation, reasoning, and summarisation \\ \hline
 DeepSeek V3.2 & DeepSeek-V3.2-Exp (Hugging Face) & Advanced reasoning model; first request may take 20--30 s while the model loads on the Hugging Face inference server \\ \hline
+\caption{AI Models Supported by Aura Chat}
 \end{longtable}
 
 Users switch between models via the ``Select AI Service'' dropdown in the interface.
@@ -204,6 +206,7 @@ Entertainment & ``play imagine dragons on spotify'', ``open netflix and search s
 Productivity & ``set timer for 5 minutes'', ``create event for team meeting tomorrow'', ``check weather in New York'', ``open calculator'' \\ \hline
 Navigation & ``open maps coffee shops near me'', ``send email to user@example.com'' \\ \hline
 General Web & ``open github.com'', ``open google.com'' \\ \hline
+\caption{Supported Agentic Task Execution Categories}
 \end{longtable}
 
 All tasks that open external URLs or perform browser navigation require user confirmation via an in-UI dialog. A ``Don't show again'' option is available for frequently approved actions.
@@ -259,6 +262,7 @@ Prism maintains all its customisations as a compact set of Git patches applied o
     \item \texttt{scripts/build\_prism.sh}: One-command wrapper that applies patches and invokes \texttt{gn gen} + \texttt{ninja} to build the \texttt{chrome} target.
 \end{itemize}
 
+\needspace{8cm}
 \subsection{Functional Requirements Supported}
 The patch-based build and distribution system is a foundational infrastructure component that underpins every functional requirement in this document.
 Without a reproducible, patch-managed build pipeline, none of the Prism-specific features could be reliably compiled, tested, or delivered to end users.

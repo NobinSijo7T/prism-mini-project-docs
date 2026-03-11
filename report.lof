@@ -5,12 +5,26 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Use Case Diagram -- Prism AI Browser}}{23}{figure.caption.7}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Class Diagram -- Prism AI Browser}}{24}{figure.caption.8}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Sequence Diagram -- Natural Language Command Execution}}{25}{figure.caption.9}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces State Chart Diagram -- AI Agent Command Lifecycle}}{26}{figure.caption.10}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Flowchart -- User Command Processing in Prism AI Browser}}{27}{figure.caption.11}%
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Use Case Diagram -- Prism AI Browser}}{25}{figure.caption.15}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Class Diagram -- Prism AI Browser}}{26}{figure.caption.16}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Sequence Diagram -- Natural Language Command Execution}}{27}{figure.caption.17}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces State Chart Diagram -- AI Agent Command Lifecycle}}{28}{figure.caption.18}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Flowchart -- User Command Processing in Prism AI Browser}}{29}{figure.caption.19}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {7.1}{\ignorespaces CI/CD Pipeline -- Prism AI Browser}}{30}{figure.caption.12}%
+\contentsline {figure}{\numberline {7.1}{\ignorespaces CI/CD Pipeline -- Prism AI Browser}}{32}{figure.caption.20}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Screenshot 1: Prism Browser — Home Screen}}{39}{figure.caption.22}%
+\contentsline {figure}{\numberline {8.2}{\ignorespaces Screenshot 2: DevSpace Homepage}}{39}{figure.caption.22}%
+\contentsline {figure}{\numberline {8.3}{\ignorespaces Screenshot 3: DevSpace Settings Panel}}{39}{figure.caption.23}%
+\contentsline {figure}{\numberline {8.4}{\ignorespaces Screenshot 4: Colour Generator Tool}}{39}{figure.caption.23}%
+\contentsline {figure}{\numberline {8.5}{\ignorespaces Screenshot 5: Notepad Tool}}{39}{figure.caption.24}%
+\contentsline {figure}{\numberline {8.6}{\ignorespaces Screenshot 6: Prompt Synthesizer Tool}}{39}{figure.caption.24}%
+\contentsline {figure}{\numberline {8.7}{\ignorespaces Screenshot 7: Agentic Task UI}}{40}{figure.caption.25}%
+\contentsline {figure}{\numberline {8.8}{\ignorespaces Screenshot 8: Aura AI Chat Interface}}{40}{figure.caption.25}%
+\contentsline {figure}{\numberline {8.9}{\ignorespaces Screenshot 9: Chat Response Output}}{40}{figure.caption.26}%
+\contentsline {figure}{\numberline {8.10}{\ignorespaces Screenshot 10: Chat Response Output (Continued)}}{40}{figure.caption.26}%
+\contentsline {figure}{\numberline {8.11}{\ignorespaces Screenshot 11: AI Image Generation}}{40}{figure.caption.27}%
+\contentsline {figure}{\numberline {8.12}{\ignorespaces Screenshot 12: Agentic Task in Progress}}{40}{figure.caption.27}%
+\contentsline {figure}{\numberline {8.13}{\ignorespaces Screenshot 13: Agentic Task Output}}{40}{figure.caption.28}%
+\contentsline {figure}{\numberline {8.14}{\ignorespaces Screenshot 14: Agentic Task Completed Successfully}}{40}{figure.caption.28}%
 \addvspace {10\p@ }

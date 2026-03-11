@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.9)  10 MAR 2026 23:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2026.1.9)  11 MAR 2026 11:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -160,6 +160,14 @@ Package: titlesec 2025/01/04 v2.17 Sectioning titles
 \titlewidth=\dimen164
 \titlewidthlast=\dimen165
 \titlewidthfirst=\dimen166
+)
+(C:\Users\MY LENOVO LOQ\AppData\Local\Programs\MiKTeX\tex/latex/setspace\setspa
+ce.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(C:\Users\MY LENOVO LOQ\AppData\Local\Programs\MiKTeX\tex/latex/needspace\needs
+pace.sty
+Package: needspace 2025/03/13 v1.3e reserve vertical space
 )
 (C:\Users\MY LENOVO LOQ\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty
 \Urlmuskip=\muskip17
@@ -891,8 +899,8 @@ Package: ragged2e 2023/06/22 v3.6 ragged2e Package
 \RaggedRightParindent=\skip122
 \JustifyingParindent=\skip123
 )
-LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 5
-3.
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 9
+8.
 
 (C:\Users\MY LENOVO LOQ\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1ptm.f
 d
@@ -905,24 +913,24 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 98.
+LaTeX Font Info:    ... okay on input line 98.
 \big@size=\dimen298
 
 (C:\Users\MY LENOVO LOQ\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\sup
@@ -954,7 +962,7 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 53.
+Package hyperref Info: Link coloring ON on input line 98.
  (report.out) (report.out)
 \@outlinefile=\write4
 \openout4 = `report.out'.
@@ -994,13 +1002,13 @@ Package hyperref Info: Link coloring ON on input line 53.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 53.
-Package microtype Info: Applying patch `item' on input line 53.
-Package microtype Info: Applying patch `toc' on input line 53.
-Package microtype Info: Applying patch `eqnum' on input line 53.
-Package microtype Info: Applying patch `footnote' on input line 53.
-Package microtype Info: Applying patch `verbatim' on input line 53.
-LaTeX Info: Redefining \microtypesetup on input line 53.
+LaTeX Info: Redefining \microtypecontext on input line 98.
+Package microtype Info: Applying patch `item' on input line 98.
+Package microtype Info: Applying patch `toc' on input line 98.
+Package microtype Info: Applying patch `eqnum' on input line 98.
+Package microtype Info: Applying patch `footnote' on input line 98.
+Package microtype Info: Applying patch `verbatim' on input line 98.
+LaTeX Info: Redefining \microtypesetup on input line 98.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1016,11 +1024,11 @@ Package microtype Info: No adjustment of character kerning.
 m.cfg
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 ) (title.tex
-<cek-logo.png, id=502, 293.095pt x 293.095pt>
+<cek-logo.png, id=520, 293.095pt x 293.095pt>
 File: cek-logo.png Graphic file (type png)
 <use cek-logo.png>
 Package pdftex.def Info: cek-logo.png  used on input line 8.
-(pdftex.def)             Requested size: 99.65349pt x 99.65097pt.
+(pdftex.def)             Requested size: 90.5922pt x 90.59016pt.
 LaTeX Font Info:    Trying to load font information for OT1+ztmcm on input line
  29.
 
@@ -1063,9 +1071,22 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
 
 {C:/Users/MY LENOVO LOQ/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Us
 ers/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc} <.
-/cek-logo.png>]) (document-control-data-sheet.tex
-Underfull \hbox (badness 10000) in paragraph at lines 25--25
-[]|\OT1/ptm/m/n/12 (+20) Project Lead, AI Back-end
+/cek-logo.png>]) (certificate.tex
+<./cek-logo.png, id=530, 293.095pt x 293.095pt>
+File: ./cek-logo.png Graphic file (type png)
+<use ./cek-logo.png>
+Package pdftex.def Info: ./cek-logo.png  used on input line 5.
+(pdftex.def)             Requested size: 67.94241pt x 67.93816pt.
+
+Overfull \hbox (13.13954pt too wide) in paragraph at lines 19--26
+\OT1/ptm/m/n/12 (-20) This is to cer-tify that the re-port en-ti-tled \OT1/ptm/
+b/n/12 (-20) Prism AI Browser \OT1/ptm/m/n/12 (-20) sub-mit-ted by Nobin Sijo (
+KNP23CS082),
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--26
+
  []
 
 )
@@ -1073,24 +1094,45 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.61 \newpage
-              [1
+l.113 \newpage
+               [1 <./cek-logo.png>] (declaration.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--23
 
-] [2] (report.toc [1] [2])
+ []
+
+) [1] (acknowledgement.tex
+Underfull \hbox (badness 10000) in paragraph at lines 10--22
+
+ []
+
+) [2] (report-abstract.tex) [3] (document-control-data-sheet.tex
+Underfull \hbox (badness 10000) in paragraph at lines 24--24
+[]|\OT1/ptm/m/n/12 (+20) Project Lead, AI Back-end
+ []
+
+) [4
+
+] [5] (report.toc [6] [7] [8])
 \tf@toc=\write5
 \openout5 = `report.toc'.
 
- [3] (report.lof)
+ [9] (report.lof)
 \tf@lof=\write6
 \openout6 = `report.lof'.
 
- (report.lot)
+ [10] (report.lot)
 \tf@lot=\write7
 \openout7 = `report.lot'.
 
-
-[4] (introduction.tex
+ [11]
+(introduction.tex
 Chapter 1.
+
+Overfull \hbox (10.5027pt too wide) in paragraph at lines 4--5
+\OT1/ptm/m/n/12 (-20) de-scribes the prob-lem do-main, the de-sign and ar-chi-t
+ec-ture of the sys-tem, its fea-tures, non-functional
+ []
+
 
 Overfull \hbox (13.35551pt too wide) in paragraph at lines 7--8
 \OT1/ptm/m/n/12 (-20) and privacy-respecting soft-ware, there is a clear need f
@@ -1112,24 +1154,17 @@ l.20 \end{itemize}
                    [1
 
 ]
-Overfull \hbox (9.16312pt too wide) in paragraph at lines 44--45
+Overfull \hbox (9.16312pt too wide) in paragraph at lines 45--46
 []\OT1/ptm/m/n/12 (-20) Chrome De-v-Tools Pro-to-col -- [][]$\OT1/cmtt/m/n/12 h
 ttps : / / chromedevtools . github . io / devtools-[]protocol/$[][] 
  []
 
 
-Overfull \hbox (0.77551pt too wide) in paragraph at lines 46--47
+Overfull \hbox (0.77551pt too wide) in paragraph at lines 47--48
 []\OT1/ptm/m/n/12 (-20) Local LLM frame-works (e.g., LLaMA, Al-paca) -- [][]$\O
 T1/cmtt/m/n/12 https : / / github . com / ggerganov / llama .
  []
 
-
-pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.57     \item \textbf
-                      {Chapter 6 -- UML Diagrams:} Presents Use Case, Class,...
 [2]) (overall-description.tex [3]
 Chapter 2.
 
@@ -1177,20 +1212,20 @@ Underfull \hbox (badness 1331) in paragraph at lines 67--67
  []
 
 [5]
-Overfull \hbox (30.04135pt too wide) in paragraph at lines 83--84
+Overfull \hbox (30.04135pt too wide) in paragraph at lines 84--85
 []\OT1/ptm/m/n/12 (-20) The CDP port (9222) is hard-coded at launch via a comma
 nd-line switch in-jec-tion in \OT1/cmtt/m/n/12 chrome[]-main.cc
  []
 
 
-Overfull \hbox (9.44862pt too wide) in paragraph at lines 84--85
+Overfull \hbox (9.44862pt too wide) in paragraph at lines 85--86
 []\OT1/ptm/m/n/12 (-20) The AI agent back-end URL (\OT1/cmtt/m/n/12 http://127.
 0.0.1:7788\OT1/ptm/m/n/12 (-20) ) is hard-coded in \OT1/cmtt/m/n/12 prism[]-ai[
 ]-button.cc\OT1/ptm/m/n/12 (-20) ;
  []
 
 
-Overfull \hbox (13.9941pt too wide) in paragraph at lines 85--86
+Overfull \hbox (13.9941pt too wide) in paragraph at lines 86--87
 []\OT1/ptm/m/n/12 (-20) All Chromium-specific brand-ing strings (prod-uct name,
  de-scrip-tions) in \OT1/cmtt/m/n/12 chromium[]-strings.grd
  []
@@ -1206,22 +1241,21 @@ rd Chromium browser UI el-e-ments (ad-dress bar, back/forward/reload
 [7
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 43--43
+Underfull \hbox (badness 10000) in paragraph at lines 46--46
 []|\OT1/ptm/m/n/12 (+20) A new fore-ground tab opens nav-i-gat-ing to
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 54--54
+Underfull \hbox (badness 10000) in paragraph at lines 62--62
 []|\OT1/ptm/m/n/12 (+20) CDP Web-Socket end-point ac-tive at
  []
 
-ignored error: Infinite glue shrinkage found in box being split [8]
-Underfull \hbox (badness 1721) in paragraph at lines 87--87
+[8]
+Underfull \hbox (badness 1721) in paragraph at lines 110--110
 []|\OT1/ptm/m/n/12 (+20) Browser tabs are cre-ated, de-stroyed, or switched as
  []
 
-ignored error: Infinite glue shrinkage found in box being split [9])
-(system-features.tex [10]
+[9]) (system-features.tex [10] [11]
 Chapter 4.
 
 Overfull \hbox (47.19388pt too wide) in paragraph at lines 12--13
@@ -1237,7 +1271,7 @@ tm/m/n/12 (-20) opens a new fore-ground tab to \OT1/cmtt/m/n/12 http://127.0.0.
 1:7788
  []
 
-[11
+[12
 
 ]
 Overfull \hbox (33.19109pt too wide) in paragraph at lines 30--31
@@ -1253,19 +1287,19 @@ reateTarget\OT1/ptm/m/n/12 (-20) , \OT1/cmtt/m/n/12 Page.navigate\OT1/ptm/m/n/1
 2 (-20) , \OT1/cmtt/m/n/12 DOM.getDocument\OT1/ptm/m/n/12 (-20) ,
  []
 
-[12]
+[13]
 Overfull \hbox (33.02534pt too wide) in paragraph at lines 75--76
 \OT1/ptm/m/n/12 (-20) un-der-stand long ar-ti-cles, tech-ni-cal doc-u-ments, or
  e-commerce prod-uct pages. This is a \OT1/ptm/b/n/12 (-20) medium-priority
  []
 
-[13]
+[14]
 Overfull \hbox (15.24858pt too wide) in paragraph at lines 106--107
 \OT1/ptm/m/n/12 (-20) lo-cally by the Prism browser. It re-places the stan-dard
  blank new-tab page with a productivity-focused
  []
 
-
+[15]
 Underfull \hbox (badness 10000) in paragraph at lines 126--126
 []|\OT1/ptm/m/n/12 (+20) Quick-launch link to \OT1/cmtt/m/n/12 http://localhost
 :3000
@@ -1304,52 +1338,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 134--134
 []|\OT1/ptm/m/n/12 (+20) Configurable focus/distraction-free mode from
  []
 
-[14]
-Overfull \hbox (11.06416pt too wide) in paragraph at lines 155--156
+[16]
+Overfull \hbox (11.06416pt too wide) in paragraph at lines 156--157
 []\OT1/ptm/m/n/12 (-20) Must be served from a lo-cal web server (not \OT1/cmtt/
 m/n/12 file://\OT1/ptm/m/n/12 (-20) ) due to CORS re-stric-tions on \OT1/cmtt/m
 /n/12 quotes.json
  []
 
-[15]
-Underfull \hbox (badness 10000) in paragraph at lines 179--179
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--180
 []|\OT1/ptm/m/n/12 (-1) DeepSeek-V3.2-Exp
  []
 
-[16]
-Underfull \hbox (badness 1701) in paragraph at lines 205--205
+[17]
+Underfull \hbox (badness 1701) in paragraph at lines 207--207
 []|\OT1/ptm/m/n/12 (+20) ``open maps cof-fee shops near me'', ``send email to
  []
 
-[17]
-Overfull \hbox (5.15172pt too wide) in paragraph at lines 238--239
+ignored error: Infinite glue shrinkage found in box being split [18]
+Overfull \hbox (5.15172pt too wide) in paragraph at lines 241--242
 []\OT1/ptm/m/n/12 (-20) Tailwind cus-tom colour: \OT1/cmtt/m/n/12 primary: #88E
 755 \OT1/ptm/m/n/12 (-20) (Prism green); con-fig in \OT1/cmtt/m/n/12 tailwind.c
 onfig.js\OT1/ptm/m/n/12 (-20) . 
  []
 
-
-Overfull \hbox (12.22668pt too wide) in paragraph at lines 256--257
+[19]
+Overfull \hbox (12.22668pt too wide) in paragraph at lines 259--260
 []\OT1/cmtt/m/n/12 patches/0001-prism-working-tree.diff\OT1/ptm/m/n/12 (-20) : 
 Con-tains all mod-i-fi-ca-tions to ex-ist-ing Chromium
  []
 
-[18]
-Overfull \hbox (0.67561pt too wide) in paragraph at lines 263--266
+[20]
+Overfull \hbox (0.67561pt too wide) in paragraph at lines 267--270
 \OT1/ptm/m/n/12 (-20) un-der-pins ev-ery func-tional re-quire-ment in this doc-
 u-ment. With-out a re-pro-ducible, patch-managed
  []
 
 
-Overfull \hbox (8.2931pt too wide) in paragraph at lines 270--271
+Overfull \hbox (8.2931pt too wide) in paragraph at lines 274--275
 \OT1/ptm/m/n/12 (-20) (\OT1/cmtt/m/n/12 homepage-devspace/\OT1/ptm/m/n/12 (-20)
  ) into a sin-gle dis-tributable archive. This en-sures all run-time com-po-nen
 ts
  []
 
-) (other-nonfunction-requirement.tex [19]
+) (other-nonfunction-requirement.tex [21]
 Chapter 5.
-[20
+[22
 
 ]
 Overfull \hbox (66.33281pt too wide) in paragraph at lines 41--42
@@ -1358,16 +1392,16 @@ g-i-cally named patch files (e.g., \OT1/cmtt/m/n/12 0003-voice-input.diff\OT1/p
 tm/m/n/12 (-20) )
  []
 
-[21]
+[23]
 Overfull \hbox (65.3883pt too wide) in paragraph at lines 55--56
 \OT1/ptm/m/n/12 (-20) the patches shall use Chromium's \OT1/cmtt/m/n/12 BUILDFL
 AG(IS[]-WIN)\OT1/ptm/m/n/12 (-20) , \OT1/cmtt/m/n/12 BUILDFLAG(IS[]-MAC)\OT1/pt
 m/m/n/12 (-20) , and \OT1/cmtt/m/n/12 BUILDFLAG(IS[]-LINUX)
  []
 
-) (uml-diagram.tex [22]
+) (uml-diagram.tex [24]
 Chapter 6.
-[23
+[25
 
 ]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
@@ -1386,7 +1420,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 211--211
 []\OT1/cmtt/m/n/8 - ws[]-url: str =
  []
 
-[24] [25]
+[26] [27]
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 326.
 
@@ -1394,7 +1428,7 @@ Overfull \hbox (37.35599pt too wide) in paragraph at lines 386--387
  [][] 
  []
 
-[26]) (testing.tex [27]
+[28]) (testing.tex [29]
 Chapter 7.
 
 Overfull \hbox (7.56735pt too wide) in paragraph at lines 15--16
@@ -1418,7 +1452,7 @@ st con-firms that launch-ing the browser with-out \OT1/cmtt/m/n/12 --remote-deb
 ugging-port
  []
 
-[28
+[30
 
 ]
 Overfull \hbox (11.04068pt too wide) in paragraph at lines 32--33
@@ -1432,7 +1466,7 @@ Overfull \hbox (4.86095pt too wide) in paragraph at lines 48--49
  ws://127.0.0.1:9222/json \OT1/ptm/m/n/12 (-20) im-me-di-ately af-ter browser
  []
 
-[29]
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 167--167
 []|\OT1/cmtt/m/n/12 gclient sync \OT1/ptm/m/n/12 (+20) /
  []
@@ -1487,20 +1521,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 173--173
 []|\OT1/ptm/m/n/12 (+20) GitHub Re-leases
  []
 
-[30]
-Overfull \hbox (26.72505pt too wide) in paragraph at lines 178--179
+[32]
+Overfull \hbox (26.72505pt too wide) in paragraph at lines 179--180
 []\OT1/ptm/b/n/12 (-20) Reproducibility: \OT1/ptm/m/n/12 (-20) Ev-ery build is 
 an-chored to a spe-cific Chromium re-vi-sion via \OT1/cmtt/m/n/12 BASE[]-REVISI
 ON.txt\OT1/ptm/m/n/12 (-20) ,
  []
 
 
-Overfull \hbox (17.29503pt too wide) in paragraph at lines 181--182
+Overfull \hbox (17.29503pt too wide) in paragraph at lines 182--183
 \OT1/cmtt/m/n/12 0002-*\OT1/ptm/m/n/12 (-20) , ...), en-abling in-di-vid-ual fe
 a-tures to be re-viewed, re-verted, or cherry-picked in-de-pen-dently. 
  []
 
-) (future-implementation.tex [31]
+[33]) (future-implementation.tex [34]
 Chapter 8.
 
 Overfull \hbox (5.56013pt too wide) in paragraph at lines 4--5
@@ -1508,9 +1542,9 @@ Overfull \hbox (5.56013pt too wide) in paragraph at lines 4--5
 -ing the fea-si-bil-ity of agen-tic, privacy-centric
  []
 
-[32
+[35
 
-] [33]
+] [36]
 Overfull \hbox (5.62868pt too wide) in paragraph at lines 84--85
 []\OT1/ptm/m/n/12 (-20) Explore a \OT1/ptm/b/n/12 (-20) Prism for An-droid \OT1
 /ptm/m/n/12 (-20) build based on Chromium's An-droid tar-get, with a mobile-ada
@@ -1524,7 +1558,93 @@ ptm/m/n/12 (-20) GitHub Ac-tion that, when up-stream Chromium is up-dated, au-t
 o-mat-i-cally
  []
 
-) (conclusion.tex [34]
+[37]) [38] (project-snapshots.tex
+<pic/1.png, id=964, 2504.35625pt x 1380.15625pt>
+File: pic/1.png Graphic file (type png)
+<use pic/1.png>
+Package pdftex.def Info: pic/1.png  used on input line 11.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+<pic/2(devspace).png, id=965, 2504.35625pt x 1380.15625pt>
+File: pic/2(devspace).png Graphic file (type png)
+<use pic/2(devspace).png>
+Package pdftex.def Info: pic/2(devspace).png  used on input line 17.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+
+Underfull \hbox (badness 3769) in paragraph at lines 18--18
+[]\OT1/ptm/m/n/12 (+20) Figure 8.2: |Screen-shot 2: De-vS-pace
+ []
+
+<pic/2(homepage(devsapce)-settings)).png, id=966, 1138.2525pt x 638.385pt>
+File: pic/2(homepage(devsapce)-settings)).png Graphic file (type png)
+<use pic/2(homepage(devsapce)-settings)).png>
+Package pdftex.def Info: pic/2(homepage(devsapce)-settings)).png  used on input
+ line 27.
+(pdftex.def)             Requested size: 212.89546pt x 119.39491pt.
+<pic/2(colour generator).png, id=967, 1135.24126pt x 626.94225pt>
+File: pic/2(colour generator).png Graphic file (type png)
+<use pic/2(colour generator).png>
+Package pdftex.def Info: pic/2(colour generator).png  used on input line 33.
+(pdftex.def)             Requested size: 212.89546pt x 117.57051pt.
+<pic/2(notepad).png, id=968, 1144.87724pt x 634.16925pt>
+File: pic/2(notepad).png Graphic file (type png)
+<use pic/2(notepad).png>
+Package pdftex.def Info: pic/2(notepad).png  used on input line 43.
+(pdftex.def)             Requested size: 212.89546pt x 117.91942pt.
+<pic/2(prompt synthesizer).png, id=969, 1129.821pt x 636.57825pt>
+File: pic/2(prompt synthesizer).png Graphic file (type png)
+<use pic/2(prompt synthesizer).png>
+Package pdftex.def Info: pic/2(prompt synthesizer).png  used on input line 49.
+(pdftex.def)             Requested size: 212.89546pt x 119.95064pt.
+<pic/3(agentic ui).png, id=970, 2504.35625pt x 1380.15625pt>
+File: pic/3(agentic ui).png Graphic file (type png)
+<use pic/3(agentic ui).png>
+Package pdftex.def Info: pic/3(agentic ui).png  used on input line 59.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+<pic/4(chatbox ui).png, id=971, 2504.35625pt x 1380.15625pt>
+File: pic/4(chatbox ui).png Graphic file (type png)
+<use pic/4(chatbox ui).png>
+Package pdftex.def Info: pic/4(chatbox ui).png  used on input line 65.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+[39
+
+ <./pic/1.png> <./pic/2(devspace).png> <./pic/2(homepage(devsapce)-settings)).p
+ng> <./pic/2(colour generator).png> <./pic/2(notepad).png> <./pic/2(prompt synt
+hesizer).png>]
+<pic/5(chatbox output).png, id=982, 2504.35625pt x 1380.15625pt>
+File: pic/5(chatbox output).png Graphic file (type png)
+<use pic/5(chatbox output).png>
+Package pdftex.def Info: pic/5(chatbox output).png  used on input line 75.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+<pic/6(chatbox output).png, id=983, 2504.35625pt x 1380.15625pt>
+File: pic/6(chatbox output).png Graphic file (type png)
+<use pic/6(chatbox output).png>
+Package pdftex.def Info: pic/6(chatbox output).png  used on input line 81.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+<pic/7(image generation).png, id=984, 2504.35625pt x 1380.15625pt>
+File: pic/7(image generation).png Graphic file (type png)
+<use pic/7(image generation).png>
+Package pdftex.def Info: pic/7(image generation).png  used on input line 91.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+<pic/8(agentic running).png, id=985, 2504.35625pt x 1380.15625pt>
+File: pic/8(agentic running).png Graphic file (type png)
+<use pic/8(agentic running).png>
+Package pdftex.def Info: pic/8(agentic running).png  used on input line 97.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+<pic/9(agentic output).png, id=986, 2504.35625pt x 1380.15625pt>
+File: pic/9(agentic output).png Graphic file (type png)
+<use pic/9(agentic output).png>
+Package pdftex.def Info: pic/9(agentic output).png  used on input line 107.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+<pic/10(agentic succeesful).png, id=987, 2504.35625pt x 1380.15625pt>
+File: pic/10(agentic succeesful).png Graphic file (type png)
+<use pic/10(agentic succeesful).png>
+Package pdftex.def Info: pic/10(agentic succeesful).png  used on input line 113
+.
+(pdftex.def)             Requested size: 212.89546pt x 117.32225pt.
+) (conclusion.tex [40 <./pic/3(agentic ui).png> <./pic/4(chatbox ui).png> <./pi
+c/5(chatbox output).png> <./pic/6(chatbox output).png> <./pic/7(image generatio
+n).png> <./pic/8(agentic running).png> <./pic/9(agentic output).png> <./pic/10(
+agentic succeesful).png>]
 Chapter 9.
 
 Overfull \hbox (13.20966pt too wide) in paragraph at lines 10--11
@@ -1539,36 +1659,44 @@ tt/m/n/12 TaskExecutor \OT1/ptm/m/n/12 (-20) mod-ule demon-strates true agen-ti
 c be-haviour, un-der-stand-ing
  []
 
-[35
+[41
 
-]
-Overfull \hbox (13.07867pt too wide) in paragraph at lines 47--48
+] [42]
+Overfull \hbox (13.07867pt too wide) in paragraph at lines 48--49
 []\OT1/ptm/m/n/12 (-20) Frontend de-vel-op-ment with Tail-wind CSS, JavaScript 
 ES6+, and Web APIs (Speech, Per-for-mance,
  []
 
 
-Overfull \hbox (8.31808pt too wide) in paragraph at lines 48--49
+Overfull \hbox (8.31808pt too wide) in paragraph at lines 49--50
 []\OT1/ptm/m/n/12 (-20) API in-te-gra-tion pat-terns: REST, Web-Socket, ex-po-n
 en-tial back-off retry, and API key man-age-ment. 
  []
 
-[36]) [37] (report.aux)
+) [43] (references.tex
+Overfull \hbox (0.14917pt too wide) in paragraph at lines 12--14
+[][]$\OT1/cmtt/m/n/12 https : / / commondatastorage . googleapis . com / chrome
+-[]infra-[]docs / flat / depot _
+ []
+
+[44
+
+]) [45] (report.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-11-06>
  ***********
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 95AC8E25CA3B1AC23C96DA4388ED734E;22829.
+(rerunfilecheck)             Checksum: E75397AB6A6EA891C987871DB2808F44;23366.
  ) 
 Here is how much of TeX's memory you used:
- 28348 strings out of 467871
- 554773 string characters out of 5414469
- 983271 words of memory out of 5000000
- 56187 multiletter control sequences out of 15000+600000
- 684738 words of font info for 343 fonts, out of 8000000 for 9000
+ 28643 strings out of 467871
+ 561920 string characters out of 5414469
+ 982733 words of memory out of 5000000
+ 56379 multiletter control sequences out of 15000+600000
+ 691884 words of font info for 366 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,13n,104p,1005b,944s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,13n,104p,1005b,963s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsf
 onts/cm/cmmi10.pfb><C:/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/
 type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/MY LENOVO LOQ/AppData/Local/Progr
@@ -1578,9 +1706,9 @@ MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C
 :/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8
 a.pfb><C:/Users/MY LENOVO LOQ/AppData/Local/Programs/MiKTeX/fonts/type1/urw/tim
 es/utmri8a.pfb>
-Output written on report.pdf (44 pages, 360006 bytes).
+Output written on report.pdf (58 pages, 5098351 bytes).
 PDF statistics:
- 955 PDF objects out of 1000 (max. 8388607)
- 202 named destinations out of 1000 (max. 500000)
- 91634 words of extra memory for PDF output out of 106986 (max. 10000000)
+ 1148 PDF objects out of 1200 (max. 8388607)
+ 244 named destinations out of 1000 (max. 500000)
+ 106085 words of extra memory for PDF output out of 106986 (max. 10000000)
 
